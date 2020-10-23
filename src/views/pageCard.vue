@@ -105,9 +105,10 @@ export default {
     position: absolute;
     z-index: 10;
     width: 100%;
-    height: 20px;
+    height: 30px;
     line-height: 20px;
     font-size: 14px;
+    background-color: #fff;
     label{
       display: inline-block;
       margin: 0 10px;
@@ -118,15 +119,26 @@ export default {
       background-repeat: no-repeat;
 
     }
-    .edit_btn{
-      // background-image: url('../assets/imgs/appraise.png');
+    .edit_btn,.bgc_btn,.del_btn{
+      background-image: url('../assets/images/controls-431.png');
+      background-size:initial;
+      background-position: -30px 0px;
+    }
+    .edit_btn:hover{
+      background-position: -30px -30px;
     }
     .bgc_btn{
-      // background-image: url('../assets/imgs/CertFile@2x.png');
+      background-position: 0px 0px;
+    }
+    .bgc_btn:hover{
+      background-position: 0px -30px;
     }
     .del_btn{
       float: right;
-      // background-image: url('../assets/imgs/close@2x.png');
+      background-position: -60px 0px;
+    }
+    .del_btn:hover{
+      background-position: -60px -30px;
     }
   }
   .content{
@@ -151,7 +163,7 @@ export default {
   &:hover{
     .head_btn{
       display: block;
-      background-color:rgba(255, 244, 244, 0.4);
+      background-color:rgba(255, 244, 244, 0.9);
       border-bottom: 1px dashed grey;
       color: red;
     }
