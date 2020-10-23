@@ -1,0 +1,16 @@
+{
+  "rankList": ["高级", "资深", "专家"],
+  "sexList":["未知","男","女"],
+  "selfCareList":["自理","半自理","不能自理"],
+  "roleList":["","病患","项目经理","护工主管","护工","护士长","运维管家","护士"],
+  "rankColorList": [["#B7CBE8","#A2B5D1"],["#68A6E7","#798ED5"],["#DCBF7A","#D1AE63"]],
+  "periodList": ["次", "小时", "天", "周", "月", "季度", "年", "白天", "夜间"],
+  "axiosBaseURL": "http://tiansu-hcs.natapp1.cc/api/v1",
+  "imgURL": "http://tiansu-hcs.natapp1.cc/hcs/picFile/",
+  "imgdomain": "http://tiansu-hcs.natapp1.cc/hcs/imgFile/",
+  "domain": "http://hcsdemo.tiansu-china.com/hcs_wx",
+  "appId": "wxd4b953286afd7bb5",
+  "environment":"xxxxxx",
+  "authoURL":"http://hcsdemo.tiansu-china.com/api/v1/common/redirect/code",
+  "vConsole": false
+}
