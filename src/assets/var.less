@@ -1,0 +1,55 @@
+@color-default: #3E4255;
+@color-white: #fff;
+@color-grey: #8D929E;
+@nav-color: #C5D0E0;
+@color-green: #1FC1C9;
+@color-red: #F27967;
+@color-yellow: #C19705;
+@background-yellow: #F5EDD3;
+@background-grey: #9b9b9b;
+@background-white: #fff;
+@border-color: #ECECF3; // 边框的颜色
+@font-size-large: 18px;
+@font-size-normal: 16px;
+@font-size-small: 14px;
+@font-size-mini: 12px;
+@head-height: 36px; // 页头的高度
+@footer-height: 50px; // 页尾的高度
+@m5: 5px;
+@m10: 10px;
+@m15: 15px; // 组件离边框的外边距，以及内边距，都是15px
+@m20: 20px;
+@m40: 40px;
+@m50: 50px;
+
+.border_radius(@radius:5px;){
+    -webkit-border-radius: @radius;
+    -moz-border-radius: @radius;
+    border-radius: @radius;
+}
+
+.flex() {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+.flex-num(@num) {
+    -webkit-box-flex: @num;
+    -webkit-flex: @num;
+    -moz-box-flex: @num;
+    -ms-flex: @num;
+    flex: @num;
+}
+.flex-direction(@param) {
+    //  row|row-reverse|column|column-reverse|initial|inherit;
+    flex-direction: @param
+}
+.line-clamp(@num) {
+    overflow : hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: @num;
+    -webkit-box-orient: vertical;
+}

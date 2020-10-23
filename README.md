@@ -1,11 +1,42 @@
-# practice
-by Neo && adele
+# my_index
+
+## 一、项目启动
+### 安装依赖
+```
+npm install
+```
+### 本地开发
+```
+npm run start / npm run serve
+```
+### 打包部署
+```
+npm run build
+```
+### VScode配置，保存即格式化
+
+先安装扩展如prettier, eslint, vetur等，然后file - preferences - settings - 右上角打开json配置，配置如下，复制粘贴:
+```
+    {
+      "window.zoomLevel": 1,
+      "prettier.semi": false, // 去掉代码结尾的分号
+      "prettier.singleQuote": true, // 单引号
+      "prettier.trailingComma": "none", // 去掉不必须的逗号
+      "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+      }
+    }
+```
 
 
-这是个人练习web+git使用的说明文件
+## 二、参考文档
 
-此处省略八百字
+  * UI框架参考 mint-ui ：  https://mint-ui.github.io/docs/#/zh-cn2
+
+  * vue-cli 3.4.0 配置指南 ：  https://cli.vuejs.org/config/
 
 
+## 	三、微信端本地开发指南
 
-特别鸣谢：小仙女的鼓励与帮助
+1. 本地改hosts  
+
