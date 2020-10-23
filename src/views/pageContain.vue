@@ -11,10 +11,10 @@
     </ul>
     <div class="overlay  " v-if="showPopup">
       <div class="popup" >
-              <input type="text" name='title' v-model="currentData.title" placeholder="标题">
-              <input type="text" name='url' v-model="currentData.url">
+              <input type="text" name='title' v-model="currentData.title" autocomplete='off' placeholder="标题" autofocus >
+              <input type="text" name='url'   v-model="currentData.url"   autocomplete='off' placeholder="网址" >
               <button @click="cancel">取消</button>
-              <button @click="confirm(currentData.id)">添加</button>
+              <button @click="confirm(currentData)">添加</button>
               <div class="close"></div>
       </div>
     </div>
@@ -59,7 +59,6 @@ export default {
     initialData () {
       // 从localStorage中读取。
       const myUrlListStr = window.localStorage.getItem('myUrlList')
-      console.log(myUrlListStr)
       if (!myUrlListStr) {
         for (let i = 0; i < this.setLength; i++) {
           this.dataList.push({ id: i })
@@ -71,21 +70,31 @@ export default {
     },
     editInfo (data) {
       // 直接=赋值是浅拷贝，数据会联动
-      this.currentData.id = data.id
-      this.currentData.dataId = data.id + 1// 更新dataId
-      this.currentData.url = data.url
-      this.currentData.title = data.title
+      this.currentData = {
+        id: data.id,
+        dataId: data.id + 1, // 更新dataId
+        url: data.url,
+        title: data.title
+      }
       this.showPopup = true
     },
     cancel () {
       this.currentData = {}
       this.showPopup = false
     },
-    confirm (id) {
-      // 根据 currentData 的Id保存最新网址
+    confirm (data) {
+      if (!data.title) {
+        console.log('不能为空')
+        return
+      }
+      // 直接=赋值是浅拷贝，数据会联动
+      this.dataList[data.id] = {
+        id: data.id,
+        dataId: data.dataId,
+        url: data.url,
+        title: data.title
+      }
       this.showPopup = false
-      this.dataList[id] = this.currentData
-
       this.updatePage()
     },
     delInfo (data) {
@@ -110,16 +119,18 @@ export default {
 .main_page{
     .pageList{
         padding: 10px;
+        display: flex;
+        flex-wrap: wrap;
         &>li{
-            margin: 10px 0;
-
+            margin: 10px 10px;
+            width: calc(90% / 3);
+            max-width: 300px;
+            flex: 0 1 auto;
         }
-
     }
-
     .overlay{
         background: rgba(25,25,25,0.3) no-repeat repeat;
-        position: absolute;
+        position: fixed;
         left: 0;
         top: 0;
         height: 100%;
@@ -129,21 +140,28 @@ export default {
         .popup{
             position: fixed;
             margin: auto;
-            top: 40%;
+            top: 35%;
             left: 50%;
             transform: translate(-50%);
             width: 500px;
-            height: 100px;
             padding: 10px;
             background: white url("../assets/images/noise.png") repeat;
             border-color:rgb(154,159,164);
             box-shadow: rgba(0,0,0,0.85) 0 0 6px 0;
             z-index: 1000;
-            .input{
-                display: inline-block;
-                margin: 8px 20px 0;
+            input{
+                display: block;
+                margin: 20px 20px 3px;
+                padding: 1px 5px;
                 width: 90%;
-                height: 25px;
+                height: 30px;
+                border: 0.5px solid grey;
+            }
+            button{
+              width: 80px;
+              height: 30px;
+              margin: 15px 0 20px 20px;
+              padding: 0px;
             }
             .close{
               background: transparent url("../assets/images/close.png") -9px -43px;
@@ -151,9 +169,9 @@ export default {
               cursor: pointer;
               height: 30px;
               width: 30px;
-              position: relative;
-              top: -130px;
-              left: 500px
+              position: absolute;
+              top: -15px;
+              right:-15px
             }
 
     }
