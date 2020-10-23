@@ -34,7 +34,6 @@ const Utils = {
         )
       }
     }
-
     return fmt
   },
   /**

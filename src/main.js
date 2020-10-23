@@ -15,21 +15,18 @@ Vue.use(gallery, {
 })
 
 Vue.config.productionTip = false
+Vue.prototype.eventHub = new Vue({})// 建立事件中心
 
 Vue.use(MintUI) // 引入ui框架
 Vue.use(style) // 样式重置
-Vue.use(components) // 注册自己的components
+Vue.use(components) // 注册自己的全局components
 
-// 建立事件中心
-Vue.prototype.eventHub = new Vue({})
-
-// 默认展示图片
-// "http://tiansu-hcs.natapp1.cc/api/v1",
 // 拿到全局配置项，存储在window对象下，window.hcsConfig
 axios.get('/hcsConfig.json').then((response) => {
   window.hcsConfig = response.data
   // axios进行初始化
   axiosUtils.axiosInit()
+
   new Vue({
     router,
     store,
@@ -37,6 +34,6 @@ axios.get('/hcsConfig.json').then((response) => {
   }).$mount('#app')
 })
 
-// 添加全局的自定义的utils
+// 把自定义的日期格式化函数绑到日期对象原先中
 // eslint-disable-next-line no-extend-native
 Date.prototype.Format = MyUtils.dateFormat

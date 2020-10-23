@@ -33,8 +33,7 @@
  *
  */
 import MyUtils from '@/utils/myUtils'
-import SDK from '@/utils/SDK'
-import { workOrderApi } from '@/assets/api'
+// import { myApi } from '@/assets/api'
 
 export default {
   name: 'my-imagegallery',
@@ -66,16 +65,12 @@ export default {
     }
   },
   methods: {
-    // 图片点击预览方法
+    // 图片点击预览方法，已失效
     preview (url) {
       if (!url) {
         return false
       }
-      const currentImg = this.computedUrl(url)
-      const imglist = this.data.map((url) => {
-        return this.computedUrl(url)
-      })
-      SDK.previewImage(currentImg, imglist)
+      return this.computedUrl(url)
     },
     computedUrl (url, isThumbnail) {
       if (url.match(/(http|https):\/\/([\w.]+\/?)\S*/)) {
@@ -97,14 +92,14 @@ export default {
       this.data.splice(index, 1)
       console.log('删除图片', index, fileName)
       // const params = { id: this.id, fileName: fileName }
-      const paramsStr = `?id=${this.id}&fileName=${fileName}`
-      workOrderApi
-        .deletePhoto(paramsStr)
-        .then(resp => {
-          console.log('delete', resp)
-          // 刷新缓存，返回列表页可以重新上传
-          this.$store.state.refreshNext.serviceTrack = true
-        })
+      // const paramsStr = `?id=${this.id}&fileName=${fileName}`
+      // myApi
+      //   .deletePhoto(paramsStr)
+      //   .then(resp => {
+      //     console.log('delete', resp)
+      //     // 刷新缓存，返回列表页可以重新上传
+      //     this.$store.state.refreshNext.serviceTrack = true
+      //   })
     }
 
   }

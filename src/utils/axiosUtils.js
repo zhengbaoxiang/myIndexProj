@@ -16,7 +16,7 @@ const axiosUtils = {
       return Promise.reject(error)
     })
 
-    // 3.添加token放入header
+    // 3.请求拦截器
     axios.interceptors.request.use(
       config => {
         return config

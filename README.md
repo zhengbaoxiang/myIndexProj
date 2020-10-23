@@ -1,22 +1,18 @@
-# hcs-wx
+# my_index
 
 ## 一、项目启动
-
 ### 安装依赖
-```
+``
 npm install
 ```
-
 ### 本地开发
 ```
 npm run start / npm run serve
 ```
-
 ### 打包部署
 ```
 npm run build
 ```
-
 ### VScode配置，保存即格式化，
 
 先安装扩展如prettier, eslint, vetur等，然后file - preferences - settings - 右上角打开json配置，配置如下，复制粘贴:
