@@ -1,9 +1,7 @@
 import axios from 'axios'
-// 被护理人api
-const patientApi = { }
-// 工单api
-const workOrderApi = {
-  // 获取当前所有的巡查记录列表，需要serviceId 15790
+// 分组定义api，便于管理
+const basicApi = { }
+const myApi = {
   getInspectRecords: (serviceId) => {
     return axios.get('/orderInspection/getRecords', {
       params: {
@@ -11,14 +9,13 @@ const workOrderApi = {
       }
     })
   },
-  // 提交巡查科室的记录结果
   addRecord: (params) => {
     return axios.post('/orderInspection/addRecord', params)
   }
 }
 const wxApi = { }
 export {
-  patientApi,
-  workOrderApi,
+  basicApi,
+  myApi,
   wxApi
 }

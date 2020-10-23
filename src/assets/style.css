@@ -14,7 +14,9 @@ ol,ul{list-style:none;}
 caption,th{text-align:center;}
 q:before,q:after{content:'';}
 abbr,acronym{border:0;}
+
 h1,h2,h3,h4,h5{font-size:100%;font-weight:normal;}
+
 a,a:visited{
     color: inherit;
     text-decoration: none;
@@ -30,25 +32,6 @@ a,a:visited{
 .clearfix {
     zoom: 1;
 }
-
-.hr-10{
-    height: 10px;
-}
-.hr-20{
-    height: 20px;
-}
-.hr-50{
-    height: 50px;
-}
-.hr-60{
-    height: 60px;
-}
-.hr-65{
-    height: 65px;
-}
-.hr-300{
-    height: 300px;
-}
 .fixed {
     position: fixed;
 }
@@ -63,24 +46,19 @@ a,a:visited{
     left: 0;
     right: 0;
 }
-.bottom .mint-button--large{
-    border-radius: 0
-}
 .center{
-    text-align: center
+    top:50%;
+    left: 50%;
+    transform: translate(-50%);
 }
-.right{
-    text-align: right
-}
-.left{
-    text-align: left
-}
+
 .fl{
     float:left;
 }
 .fr{
     float:right;
 }
+
 .font10{
     font-size: 10px;
 }
@@ -105,9 +83,7 @@ a,a:visited{
 .font30{
     font-size: 30px;
 }
-.bg-white{
-    background-color: #fff;
-}
+
 .text-default{
     color: #3E4255;
 }
@@ -123,7 +99,9 @@ a,a:visited{
 .text-red{
     color: #F27967;
 }
-
+.bg-white{
+    background-color: #fff;
+}
 .mt36{
     margin-top: 36px;
 }
