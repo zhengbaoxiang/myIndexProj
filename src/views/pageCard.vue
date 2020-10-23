@@ -119,14 +119,14 @@ export default {
 
     }
     .edit_btn{
-      background-image: url('../assets/imgs/appraise.png');
+      // background-image: url('../assets/imgs/appraise.png');
     }
     .bgc_btn{
-      background-image: url('../assets/imgs/CertFile@2x.png');
+      // background-image: url('../assets/imgs/CertFile@2x.png');
     }
     .del_btn{
       float: right;
-      background-image: url('../assets/imgs/close@2x.png');
+      // background-image: url('../assets/imgs/close@2x.png');
     }
   }
   .content{

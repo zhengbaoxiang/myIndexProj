@@ -14,34 +14,16 @@ let route = new Router({
   routes: [
     {
       // 首页
-      path: '/index',
+      path: '/',
       name: 'pageContain',
       component: () => import('./views/pageContain')
-    },
-    {
-      // 工单模块
-      path: '/workorder',
-      name: 'workorder',
-      component: {
-        template: `<div>
-          <keep-alive key="keep-alive"><router-view v-if="$route.meta.keepAlive"></router-view></keep-alive>
-          <router-view v-if="!$route.meta.keepAlive" key="not-keep-alive"></router-view>
-        </div>`
-      },
-      children: [
-        {
-          // 工单管理列表
-          path: 'manageList',
-          name: 'manageList',
-          meta: { ishome: true, keepAlive: true },
-          component: () => import('./views/workorder/manageList')
-        }
-      ]
     }
   ]
 })
 
 route.beforeEach((to, from, next) => {
+  console.log('from --> to', from.path + '-->' + to.path)
+
   // 自动关闭组件弹窗
   // 初始化提交按钮状态
   MintUI.MessageBox.close()
@@ -56,14 +38,6 @@ route.beforeEach((to, from, next) => {
   ) {
     route.replace({ path: '/mine/selectCampus' })
   }
-  // if (
-  //   MyUtils.getItem('role') === '2' &&
-  //   to.meta.requiresAuth &&
-  //   MyUtils.getItem('existTel') === 'false'
-  // ) {
-  //   // 如果当前角色为普通用户且页面涉及手机号信息且未进行绑定手机操作时,跳转绑定页面
-  //   route.push({ name: 'login', query: { redirect: to } })
-  // } else {
   // 等待登录完毕后再进入页面
   let timer = function () {
     if (store.state.initing) {
@@ -81,7 +55,6 @@ route.beforeEach((to, from, next) => {
           _breadcrumbs.findIndex((m) => m === to.path) + 1
         ) // 截取第一个to.path处的路径
         store.commit('setBreadcrumbs', _breadcrumbs) // ☆☆☆ 保存到全局对象
-        console.log('from --> to', from.path + '-->' + to.path)
         console.log('from --> to', from, to)
         console.log('setBreadcrumbs', _breadcrumbs)
       }
