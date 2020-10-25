@@ -3,13 +3,13 @@
     <div class="list_zone ">
       <div class="tab_con" >
           <div class="tab">
-              <button class="current">常用</button>
-              <button>娱乐</button>
-              <button>学习</button>
+              <button  @click="tabChange(1)" :class="{current:tabId===1}">常用</button>
+              <button  @click="tabChange(2)" :class="{current:tabId===2}">娱乐</button>
+              <button  @click="tabChange(3)" :class="{current:tabId===3}">学习</button>
           </div>
       </div>
       <div id="grid" class="c6 ">
-        <ol class="pageList active action" id="ol_link1">
+        <ol class="pageList" :class="{active:tabId===1}">
             <li v-for="(item,index) in dataList" :key='index'>
                 <pageCard :paramsObj='item'
                           @editInfo="editInfo"
@@ -18,7 +18,7 @@
                 ></pageCard>
             </li>
         </ol>
-        <ol class="pageList action" id="ol_link2">
+        <ol class="pageList" :class="{active:tabId===2}">
             <li v-for="(item,index) in dataList" :key='index'>
                 <pageCard :paramsObj='item'
                           @editInfo="editInfo"
@@ -27,7 +27,7 @@
                 ></pageCard>
             </li>
         </ol>
-        <ol class="pageList main_links  action" id="ol_link3">
+        <ol class="pageList" :class="{active:tabId===3}">
             <li v-for="(item,index) in dataList" :key='index'>
                 <pageCard :paramsObj='item'
                           @editInfo="editInfo"
@@ -61,6 +61,7 @@ export default {
   },
   data () {
     return {
+      tabId: 1,
       dataList: [],
       setLength: 24,
       currentData: {},
@@ -68,28 +69,33 @@ export default {
     }
   },
   created () {
-    this.initialData()
+    this.initialData(`myUrlList_${this.tabId}`)
   },
   mounted () { },
   activated () {},
   methods: {
-    initialData () {
+    initialData (name) {
       // 从localStorage中读取
-      const myUrlListStr = window.localStorage.getItem('myUrlList')
+      const myUrlListStr = window.localStorage.getItem(name)
       // 读取初始值
       const initialDataList = window.myConfig.initialDataList
       const initialDataListLength = initialDataList.length
+      let tempList = []
       // 如果本地没有存储过，则使用初始数据
       if (!myUrlListStr) {
         for (let i = 0; i < this.setLength - initialDataListLength; i++) {
-          initialDataList.push({ id: initialDataListLength + i })
+          tempList.push({ id: initialDataListLength + i })
         }
-        this.dataList = initialDataList
+        this.dataList = initialDataList.concat(tempList)
       } else {
         const myUrlList = JSON.parse(myUrlListStr)
         this.dataList = myUrlList
       }
-      console.log(this.dataList)
+    },
+    tabChange (value) {
+      this.tabId = value
+      const name = `myUrlList_${value}`
+      this.initialData(name)
     },
     editInfo (data) {
       // 直接=赋值是浅拷贝，数据会联动
@@ -97,6 +103,7 @@ export default {
         id: data.id,
         dataId: data.id + 1, // 更新dataId
         url: data.url,
+        picName: data.picName,
         title: data.title
       }
       this.showPopup = true
@@ -129,10 +136,12 @@ export default {
     getPicName (data, name) {
       console.log('pic', data, name)
       this.dataList[data.id].picName = name
+      this.updatePage()
     },
     updatePage () {
+      const name = `myUrlList_${this.tabId}`
       const dataListStr = JSON.stringify(this.dataList)
-      window.localStorage.setItem('myUrlList', dataListStr)
+      window.localStorage.setItem(name, dataListStr)
     }
 
   }
@@ -201,17 +210,19 @@ section.main_con {
           max-width: 1650px;
           width: calc(100% - 120px);
           button{
-            display: inline-block;
             float: left;
-
             height: 30px;
             width: 60px;
-            /*border: 1px;*/
+            // border: 1px;
+            margin: 0 1px;
             outline: none;
+            background:rgb(200, 197, 197);
+
           }
           .current{
-            background: #cecece;
-            font: normal 17px/24px "Microsoft Yahei";
+            background-color: #fff;
+            border-style: none;
+            font: normal 16px/24px "Microsoft Yahei";
           }
         }
       }

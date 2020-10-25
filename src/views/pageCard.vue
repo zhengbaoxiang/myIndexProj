@@ -28,7 +28,7 @@ export default {
           id: 9,
           dataId: 9,
           url: 'https://www.baidu.com',
-          picName: 'bg.jpg',
+          picName: 'background.jpeg',
           title: '标题'
         }
       }
@@ -52,7 +52,7 @@ export default {
     if (this.paramsObj.picName) {
       this.domPicUrl = require('@/assets/images/backgrounds/' + this.paramsObj.picName)
     } else {
-      this.domPicUrl = require('@/assets/images/backgrounds/bg (17).jpg')
+      this.domPicUrl = require('@/assets/images/background.jpeg')
     }
   },
   mounted () { },
@@ -165,28 +165,32 @@ export default {
       transition: all 400ms ease;
     }
   }
-  .content:hover{
-    border-color:rgb(154,159,164);
-    box-shadow: rgba(0,0,0,0.85) 0 0 6px 0;
-    cursor: pointer;
-    .head_btn{
-      display: block;
-    }
-    img{
-      transform: scale(1.2,1.2);
-      z-index: 1;
-    }
-    .title{
-      transform: scale(1.5,1.5);
-      color: #ff8800;
-      z-index: 2;
-    }
-  }
   .content.empty{
     /*没有标签用虚线*/
     border-style:dashed ;
     overflow: auto;
     background: url("../assets/images/plus.png") scroll center center no-repeat,url("../assets/images/noise.png" ) repeat;
+  }
+}
+.pageCard:hover{
+  .head_btn{
+      display: block;
+      z-index: 10;
+    }
+  .content{
+    border-color:rgb(154,159,164);
+    box-shadow: rgba(0,0,0,0.85) 0 0 6px 0;
+    cursor: pointer;
+    img{
+      transform: scale(1.2,1.2);
+      z-index: 1;
+    }
+    .title{
+      background-color:rgba(0,0,0,0.5);
+      transform: scale(1.5,1.5);
+      color: #ff8800;
+      z-index: 2;
+    }
   }
 }
 

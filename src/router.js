@@ -21,7 +21,7 @@ let route = new Router({
 route.beforeEach((to, from, next) => {
   // 路由导航守卫，使用next()，才能开始切换
   next()
-  console.log('from --> to', from.path + '-->' + to.path)
+  // console.log('from --> to', from.path + '-->' + to.path)
 })
 
 export default route

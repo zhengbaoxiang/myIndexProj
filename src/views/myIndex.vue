@@ -10,7 +10,7 @@
 import myheader from './header'
 import searchArea from './searchArea'
 import pageContain from './pageContain'
-import myfooter from './footer'
+import myfooter from './myfooter'
 export default {
   name: 'myIndex',
   components: { myheader, searchArea, pageContain, myfooter },
@@ -27,9 +27,7 @@ export default {
       showPopup: false
     }
   },
-  created () {
-    this.initialData()
-  },
+  created () { },
   mounted () { },
   activated () {},
   methods: {}
