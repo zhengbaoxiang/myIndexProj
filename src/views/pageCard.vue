@@ -14,10 +14,7 @@
         <p class="title">{{paramsObj.title}}</p>
     </div>
 
-    <div class="empty content" v-if="!paramsObj.dataId">
-        <img :src="domPicUrl" alt="动态路径"/>
-        <p @click="clickEdit($event)" class="title">添加</p>
-
+    <div @click="clickEdit($event)"  class="empty content" v-if="!paramsObj.dataId">
     </div>
 </div>
 </template>
@@ -31,7 +28,7 @@ export default {
           id: 9,
           dataId: 9,
           url: 'https://www.baidu.com',
-          picName: 'bg (45).jpg',
+          picName: 'bg.jpg',
           title: '标题'
         }
       }
@@ -55,7 +52,7 @@ export default {
     if (this.paramsObj.picName) {
       this.domPicUrl = require('@/assets/images/backgrounds/' + this.paramsObj.picName)
     } else {
-      this.domPicUrl = require('@/assets/images/backgrounds/bg (45).jpg')
+      this.domPicUrl = require('@/assets/images/backgrounds/bg (17).jpg')
     }
   },
   mounted () { },
@@ -80,7 +77,7 @@ export default {
       // 修改背景 文件名传出去
       console.log(el, fileName)
       // this.domPicUrl = require('./' + fileName) //当前路径可以切换
-      this.domPicUrl = require('@/assets/images/backgrounds/bg (45).jpg' + fileName)
+      this.domPicUrl = require('@/assets/images/backgrounds/' + fileName)
       this.$emit('getPicName', this.paramsObj, fileName)
     },
     // 没有后台服务的情况，上传保存图片背景比较困难，暂时搁置，使用本地图片
@@ -98,82 +95,98 @@ export default {
 .pageCard{
   position: relative;
   width: 100% ;
-  height: 180px;
-  overflow: hidden;
+  height: 100%;
   .head_btn{
-    // display: none;
+    display: none;
     position: absolute;
     z-index: 10;
     width: 100%;
-    height: 30px;
-    line-height: 20px;
-    font-size: 14px;
-    background-color: #fff;
+    height: 24px;
     label{
-      display: inline-block;
-      margin: 0 10px;
-      height: 20px;
-      width: 20px;
+      background-color: transparent;
+      background: url("../assets/images/controls-431.png");
       cursor: pointer;
-      background-size: contain;
-      background-repeat: no-repeat;
-
+      border: 0px none;
+      height: 24px;
+      width: 24px;
+      -moz-appearance: none;
+      position: absolute;
     }
-    .edit_btn,.bgc_btn,.del_btn{
-      background-image: url('../assets/images/controls-431.png');
-      background-size:initial;
-      background-position: -30px 0px;
+    label.edit_btn{
+      background-position: 177px 0px;
+      left: 0px;
     }
-    .edit_btn:hover{
-      background-position: -30px -30px;
+    label.edit_btn:hover{
+      background-position: 177px 25px;
     }
-    .bgc_btn{
-      background-position: 0px 0px;
+    label.bgc_btn{
+      background-position: 207px 0px;
+      left: 24px;
     }
-    .bgc_btn:hover{
-      background-position: 0px -30px;
+    label.bgc_btn:hover{
+     background-position: 207px 25px;
     }
-    .del_btn{
-      float: right;
-      background-position: -60px 0px;
+    label.del_btn{
+      background-position: 147px 0px;
+      right: 0;
     }
-    .del_btn:hover{
-      background-position: -60px -30px;
+    label.del_btn:hover{
+      background-position: 147px 25px;
     }
   }
   .content{
     position: relative;
     height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+    color: rgb(60,60,60);
+    border: 1px solid #d8d8d8;
+    transition: all 500ms ease;
     img {
-      width: 100%;
+      display: block;
       height: 100%;
+      width: 100%;
+      transition: all 600ms ease;
     }
     p.title{
+      display: block;
+      /*background: rgb(250,250,250) none repeat scroll;*/
       position: absolute;
       bottom: 0;
+      height: 25px;
       width: 100%;
-      height: 30px;
-      line-height: 30px;
-      font-size: 16px;
+      overflow: hidden;
+      font: normal 20px/25px "KaiTi";
+      color: white;
       text-align: center;
-      cursor: pointer;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      transition: all 400ms ease;
     }
   }
-
-  &:hover{
+  .content:hover{
+    border-color:rgb(154,159,164);
+    box-shadow: rgba(0,0,0,0.85) 0 0 6px 0;
+    cursor: pointer;
     .head_btn{
       display: block;
-      background-color:rgba(255, 244, 244, 0.9);
-      border-bottom: 1px dashed grey;
-      color: red;
     }
-    .content{
-      .title{
-        color: yellow;
-        font-size: 20px;
-      }
+    img{
+      transform: scale(1.2,1.2);
+      z-index: 1;
     }
-
+    .title{
+      transform: scale(1.5,1.5);
+      color: #ff8800;
+      z-index: 2;
+    }
+  }
+  .content.empty{
+    /*没有标签用虚线*/
+    border-style:dashed ;
+    overflow: auto;
+    background: url("../assets/images/plus.png") scroll center center no-repeat,url("../assets/images/noise.png" ) repeat;
   }
 }
 

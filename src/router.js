@@ -12,8 +12,8 @@ let route = new Router({
     {
       // 首页
       path: '/',
-      name: 'pageContain',
-      component: () => import('./views/pageContain')
+      name: 'myIndex',
+      component: () => import('./views/myIndex')
     }
   ]
 })

@@ -41,8 +41,8 @@ export default {
     return {
       isNativeCall: MyUtils.getItem('default') === 'worker',
       role: MyUtils.getItem('role'),
-      path: window.hcsConfig.imgURL, // picFile
-      listPath: window.hcsConfig.imgdomain // imgFile
+      path: window.myConfig.imgURL, // picFile
+      listPath: window.myConfig.imgdomain // imgFile
     }
   },
   props: {

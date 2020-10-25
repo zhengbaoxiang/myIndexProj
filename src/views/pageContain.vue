@@ -1,36 +1,53 @@
 <template>
- <div class="main_page">
-    <ul class="pageList">
-        <li v-for="(item,index) in dataList" :key='index'>
-            <pageCard :paramsObj='item'
-                      @editInfo="editInfo"
-                      @delInfo="delInfo"
-                      @getPicName="getPicName"
-                      ></pageCard>
-        </li>
-    </ul>
-    <div class="overlay  " v-if="showPopup">
-      <div class="popup" >
-              <input type="text" name='title' v-model="currentData.title" autocomplete='off' placeholder="标题" autofocus >
-              <input type="text" name='url'   v-model="currentData.url"   autocomplete='off' placeholder="网址" >
-              <button @click="cancel">取消</button>
-              <button @click="confirm(currentData)">添加</button>
-              <div class="close"></div>
+<section class="main_con">
+    <div class="list_zone ">
+      <div class="tab_con" >
+          <div class="tab">
+              <button class="current">常用</button>
+              <button>娱乐</button>
+              <button>学习</button>
+          </div>
+      </div>
+      <div id="grid" class="c6 ">
+        <ol class="pageList active action" id="ol_link1">
+            <li v-for="(item,index) in dataList" :key='index'>
+                <pageCard :paramsObj='item'
+                          @editInfo="editInfo"
+                          @delInfo="delInfo"
+                          @getPicName="getPicName"
+                ></pageCard>
+            </li>
+        </ol>
+        <ol class="pageList action" id="ol_link2">
+            <li v-for="(item,index) in dataList" :key='index'>
+                <pageCard :paramsObj='item'
+                          @editInfo="editInfo"
+                          @delInfo="delInfo"
+                          @getPicName="getPicName"
+                ></pageCard>
+            </li>
+        </ol>
+        <ol class="pageList main_links  action" id="ol_link3">
+            <li v-for="(item,index) in dataList" :key='index'>
+                <pageCard :paramsObj='item'
+                          @editInfo="editInfo"
+                          @delInfo="delInfo"
+                          @getPicName="getPicName"
+                ></pageCard>
+            </li>
+        </ol>
       </div>
     </div>
-  <footer>
-    <div class="footer_link">
-            <a href="#">I</a>
-            <span>|</span>
-            <a href="#">love</a>
-              <span>|</span>
-            <a href="#">you</a>
-              <span>|</span>
-            <a href="#">forever</a>
+    <div class="overlay  " v-if="showPopup">
+        <div class="popup" >
+            <input type="text" name='title' v-model="currentData.title" autocomplete='off' placeholder="标题" autofocus >
+            <input type="text" name='url'   v-model="currentData.url"   autocomplete='off' placeholder="网址" >
+            <button @click="cancel">取消</button>
+            <button @click="confirm(currentData)">添加</button>
+            <div class="close"></div>
         </div>
-        <p>每天都要开开心心哒</p>
-</footer>
- </div>
+      </div>
+  </section>
 </template>
 <script>
 import pageCard from './pageCard'
@@ -45,7 +62,7 @@ export default {
   data () {
     return {
       dataList: [],
-      setLength: 5,
+      setLength: 24,
       currentData: {},
       showPopup: false
     }
@@ -57,16 +74,22 @@ export default {
   activated () {},
   methods: {
     initialData () {
-      // 从localStorage中读取。
+      // 从localStorage中读取
       const myUrlListStr = window.localStorage.getItem('myUrlList')
+      // 读取初始值
+      const initialDataList = window.myConfig.initialDataList
+      const initialDataListLength = initialDataList.length
+      // 如果本地没有存储过，则使用初始数据
       if (!myUrlListStr) {
-        for (let i = 0; i < this.setLength; i++) {
-          this.dataList.push({ id: i })
+        for (let i = 0; i < this.setLength - initialDataListLength; i++) {
+          initialDataList.push({ id: initialDataListLength + i })
         }
+        this.dataList = initialDataList
       } else {
         const myUrlList = JSON.parse(myUrlListStr)
         this.dataList = myUrlList
       }
+      console.log(this.dataList)
     },
     editInfo (data) {
       // 直接=赋值是浅拷贝，数据会联动
@@ -83,6 +106,7 @@ export default {
       this.showPopup = false
     },
     confirm (data) {
+      console.log(data)
       if (!data.title) {
         console.log('不能为空')
         return
@@ -116,68 +140,187 @@ export default {
 }
 </script>
 <style lang="less" scoped>
-.main_page{
-    .pageList{
-        padding: 10px;
-        display: flex;
-        flex-wrap: wrap;
-        &>li{
-            margin: 10px 10px;
-            width: calc(90% / 3);
-            max-width: 300px;
-            flex: 0 1 auto;
-        }
+section.main_con {
+    width: 100%;
+    /*height: 100%;*/
+    margin: auto;
+    /*background-color: #d6e9c6;*/
+    .search_form {
+      height: 42px;
+      width: 610px;
+      margin: 30px auto 15px;
+      /*overflow: hidden;*/
+      font-size: 0;
+      /*background-color: #cecece;*/
+      a{
+        display: inline-block;
+        height: 40px;
+        width: 100px;
+        text-align: center;
+        vertical-align: top;
+        background: url("../assets/images/bd_logo1.png") center -4px no-repeat;
+        background-size: cover;
+        /*background-color: red;*/
+      }
+      #input_con{
+        display: inline-block;
+        vertical-align: bottom;
+        height: 38px;
+        width: 400px;
+        margin: 1px 0 0 5px;
+        padding: 0px 5px;
+        border: 1px solid rgb(216,216,216) ;
+
+        font:normal 20px/37px "KaiTi";
+        /*/* 去掉获得焦点(点击)时显示的蓝色的框   */
+        /*outline:none;*/
+      }
+        #submit_con {
+        display: inline-block;
+        width: 83px;
+        height: 40px;
+        cursor: pointer;
+        border: 0;
+        background-color:#3385ff ;
+        margin: 0px 2px;
+        color: white;
+
+      }
+
     }
-    .overlay{
-        background: rgba(25,25,25,0.3) no-repeat repeat;
-        position: fixed;
-        left: 0;
-        top: 0;
+
+    .list_zone{
+      position: relative;
+      width: 100%;
+      height: calc(100% - 130px);
+      overflow: hidden;
+      .tab_con{
+        height: 30px;
+        .tab{
+          margin: 0 auto;
+          max-width: 1650px;
+          width: calc(100% - 120px);
+          button{
+            display: inline-block;
+            float: left;
+
+            height: 30px;
+            width: 60px;
+            /*border: 1px;*/
+            outline: none;
+          }
+          .current{
+            background: #cecece;
+            font: normal 17px/24px "Microsoft Yahei";
+          }
+        }
+      }
+      #grid{
+        /*绝对定位会脱离文档流
+        position: absolute;*/
+        /*left: 0;*/
+        /*top: 0;*/
         height: 100%;
         width: 100%;
-        margin: auto;
-        z-index: 100;
-        .popup{
-            position: fixed;
-            margin: auto;
-            top: 35%;
-            left: 50%;
-            transform: translate(-50%);
-            width: 500px;
-            padding: 10px;
-            background: white url("../assets/images/noise.png") repeat;
-            border-color:rgb(154,159,164);
-            box-shadow: rgba(0,0,0,0.85) 0 0 6px 0;
-            z-index: 1000;
-            input{
-                display: block;
-                margin: 20px 20px 3px;
-                padding: 1px 5px;
-                width: 90%;
+        overflow: hidden;
+        transition: left 400ms linear 0s;
+        ol.pageList.active{
+          display: block;
+        }
+        ol.pageList{
+          display: none;
+          list-style: outside none none;
+          margin: 10px auto 10px;
+          overflow: hidden;
+          width: calc(100% - 80px);
+          max-width: 1700px;
+          height: 100%;
+          &>li{
+            float: left;
+            height: 152px;
+            min-width: 100px;
+            width: calc(16.6% - 20px);
+
+            transition: height 500ms linear;
+            margin: 10px;
+            position: relative;
+            box-sizing: border-box;
+            opacity: 1;
+          }
+          @media (max-width:1500px) {
+            &>li{
+              height: 120px;
+            }
+          }
+
+          @media (max-width:1100px) {
+            &>li{
+              height: 90px;
+            }
+          }
+          @media (max-height:800px) {
+            &>li{
+              height: 120px;
+            }
+          }
+          @media (max-height:600px) {
+            &>li{
+              height: 90px;
+            }
+          }
+
+        }
+      }
+    }
+    .overlay{
+          background: rgba(25,25,25,0.3) no-repeat repeat;
+          position: fixed;
+          left: 0;
+          top: 0;
+          height: 100%;
+          width: 100%;
+          margin: auto;
+          z-index: 100;
+          .popup{
+              position: fixed;
+              margin: auto;
+              top: 35%;
+              left: 50%;
+              transform: translate(-50%);
+              width: 500px;
+              padding: 10px;
+              background: white url("../assets/images/noise.png") repeat;
+              border-color:rgb(154,159,164);
+              box-shadow: rgba(0,0,0,0.85) 0 0 6px 0;
+              z-index: 1000;
+              input{
+                  display: block;
+                  margin: 20px 20px 3px;
+                  padding: 1px 5px;
+                  width: 90%;
+                  height: 30px;
+                  border: 0.5px solid grey;
+              }
+              button{
+                width: 80px;
                 height: 30px;
-                border: 0.5px solid grey;
-            }
-            button{
-              width: 80px;
-              height: 30px;
-              margin: 15px 0 20px 20px;
-              padding: 0px;
-            }
-            .close{
-              background: transparent url("../assets/images/close.png") -9px -43px;
-              border-radius:15px;
-              cursor: pointer;
-              height: 30px;
-              width: 30px;
-              position: absolute;
-              top: -15px;
-              right:-15px
-            }
+                margin: 15px 0 20px 20px;
+                padding: 0px;
+              }
+              .close{
+                background: transparent url("../assets/images/close.png") -9px -43px;
+                border-radius:15px;
+                cursor: pointer;
+                height: 30px;
+                width: 30px;
+                position: absolute;
+                top: -15px;
+                right:-15px
+              }
+
+      }
 
     }
-
-    }
-
 }
 
 </style>

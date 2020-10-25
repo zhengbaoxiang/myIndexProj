@@ -1,0 +1,51 @@
+{
+  "rankList": ["高级", "资深", "专家"],
+  "sexList":["未知","男","女"],
+  "initialDataList":[
+    {
+      "id": 0,
+      "dataId": 1,
+      "url": "https://www.baidu.com",
+      "picName": "bg (1).jpg",
+      "title": "百度一下"
+    },
+    {
+      "id": 1,
+      "dataId": 2,
+      "url": "https://www.baidu.com",
+      "picName": "bg (2).jpg",
+      "title": "百度一下"
+    },
+    {
+      "id": 2,
+      "dataId": 3,
+      "url": "https://www.baidu.com",
+      "picName": "bg (3).jpg",
+      "title": "百度一下"
+    },
+    {
+      "id": 3,
+      "dataId": 4,
+      "url": "https://www.baidu.com",
+      "picName": "bg (4).jpg",
+      "title": "百度一下"
+    },
+    {
+      "id": 4,
+      "dataId": 5,
+      "url": "https://www.baidu.com",
+      "picName": "bg (5).jpg",
+      "title": "百度一下"
+    },
+    {
+      "id": 5,
+      "dataId": 6,
+      "url": "https://www.baidu.com",
+      "picName": "bg (6).jpg",
+      "title": "百度一下"
+    }
+  ],
+  "axiosBaseURL": "http://tiansu-hcs.natapp1.cc/api/v1",
+  "imgURL": "http://tiansu-hcs.natapp1.cc/hcs/picFile/",
+  "vConsole": false
+}
