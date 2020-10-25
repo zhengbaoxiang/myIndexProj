@@ -44,7 +44,6 @@
             <input type="text" name='url'   v-model="currentData.url"   autocomplete='off' placeholder="网址" >
             <button @click="cancel">取消</button>
             <button @click="confirm(currentData)">添加</button>
-            <div class="close"></div>
         </div>
       </div>
   </section>
@@ -99,13 +98,7 @@ export default {
     },
     editInfo (data) {
       // 直接=赋值是浅拷贝，数据会联动
-      this.currentData = {
-        id: data.id,
-        dataId: data.id + 1, // 更新dataId
-        url: data.url,
-        picName: data.picName,
-        title: data.title
-      }
+      this.currentData = this.dataAssign(data)
       this.showPopup = true
     },
     cancel () {
@@ -113,35 +106,40 @@ export default {
       this.showPopup = false
     },
     confirm (data) {
-      console.log(data)
       if (!data.title) {
         console.log('不能为空')
         return
       }
-      // 直接=赋值是浅拷贝，数据会联动
-      this.dataList[data.id] = {
-        id: data.id,
-        dataId: data.dataId,
-        url: data.url,
-        title: data.title
-      }
+      this.dataList[data.id] = this.dataAssign(data)
       this.showPopup = false
       this.updatePage()
     },
     delInfo (data) {
-      console.log('Del', data)
-      this.dataList[data.id] = { id: data.id }
+      // this.dataList[data.id] = { id: data.id }
+      // 上一行虽然能改，但是不会刷新数据，$set强制刷新
+      this.$set(this.dataList, data.id, { id: data.id })
       this.updatePage()
     },
     getPicName (data, name) {
-      console.log('pic', data, name)
-      this.dataList[data.id].picName = name
+      // this.dataList[data.id].picName = name
+      const item = this.dataAssign(data, name)
+      this.$set(this.dataList, data.id, item)
       this.updatePage()
     },
     updatePage () {
       const name = `myUrlList_${this.tabId}`
       const dataListStr = JSON.stringify(this.dataList)
       window.localStorage.setItem(name, dataListStr)
+    },
+    dataAssign (data, name) {
+      let tempObj = {
+        id: data.id,
+        dataId: data.id + 1,
+        url: data.url,
+        picName: name || data.picName,
+        title: data.title
+      }
+      return tempObj
     }
 
   }
@@ -317,16 +315,6 @@ section.main_con {
                 height: 30px;
                 margin: 15px 0 20px 20px;
                 padding: 0px;
-              }
-              .close{
-                background: transparent url("../assets/images/close.png") -9px -43px;
-                border-radius:15px;
-                cursor: pointer;
-                height: 30px;
-                width: 30px;
-                position: absolute;
-                top: -15px;
-                right:-15px
               }
 
       }

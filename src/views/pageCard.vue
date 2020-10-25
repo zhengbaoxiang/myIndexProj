@@ -42,31 +42,37 @@ export default {
     }
   },
   watch: {
+    paramsObj: {
+      handler (val) {
+        this.initial()
+      }
+    }
 
   },
   created () {
-    // 动态路径不同于静态，不能直接引用，要require引入，且路径必须是字符串形式
-    // this.domPicUrl = require('../../assets/imgs/noHead@2x.png')
-    // this.domPicUrl = require('@/assets/imgs/homepage_img3@2x.png')
-    // 直接使用变量srcpath拼接会报错,因此采用部分拼接，以路径格式开头
-    if (this.paramsObj.picName) {
-      this.domPicUrl = require('@/assets/images/backgrounds/' + this.paramsObj.picName)
-    } else {
-      this.domPicUrl = require('@/assets/images/background.jpeg')
-    }
+    this.initial()
   },
   mounted () { },
   activated () {},
   updated () {
-    // console.log(this.paramsObj)
   },
   methods: {
+    initial () {
+      // 动态路径不同于静态，不能直接引用，要require引入，且路径必须是字符串形式
+      // this.domPicUrl = require('../../assets/imgs/noHead@2x.png')
+      // this.domPicUrl = require('@/assets/imgs/homepage_img3@2x.png')
+      // 直接使用变量srcpath拼接会报错,因此采用部分拼接，以路径格式开头
+      if (this.paramsObj.picName) {
+        this.domPicUrl = require('@/assets/images/backgrounds/' + this.paramsObj.picName)
+      } else {
+        this.domPicUrl = require('@/assets/images/background.jpeg')
+      }
+    },
     // 把id传出去
     clickEdit (e) {
       this.$emit('editInfo', this.paramsObj)
     },
     clickDel (e) {
-      console.log('Del', this.paramsObj.id)
       this.$emit('delInfo', this.paramsObj)
     },
     fileChange (el) {
@@ -77,7 +83,7 @@ export default {
       // 修改背景 文件名传出去
       console.log(el, fileName)
       // this.domPicUrl = require('./' + fileName) //当前路径可以切换
-      this.domPicUrl = require('@/assets/images/backgrounds/' + fileName)
+      // this.domPicUrl = require('@/assets/images/backgrounds/' + fileName)
       this.$emit('getPicName', this.paramsObj, fileName)
     },
     // 没有后台服务的情况，上传保存图片背景比较困难，暂时搁置，使用本地图片

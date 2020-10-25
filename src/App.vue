@@ -15,6 +15,7 @@ body{
   margin: 0 auto;
   font-family: 'Microsoft Yahei';
   background: url("./assets/images/background.jpeg")  no-repeat;
+  background: url("./assets/images/bg2.gif")  no-repeat;
   background-size: cover;
   background-attachment:fixed;
   font-size:16px;
