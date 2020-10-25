@@ -42,7 +42,7 @@ export default {
         width: 100px;
         text-align: center;
         vertical-align: top;
-        background: url("../assets/images/bd_logo1.png") center -4px no-repeat;
+        background: url("../../assets/images/bd_logo1.png") center -4px no-repeat;
         background-size: cover;
         /*background-color: red;*/
       }

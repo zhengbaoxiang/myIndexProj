@@ -7,10 +7,10 @@
 </div>
 </template>
 <script>
-import myheader from './header'
-import searchArea from './searchArea'
-import pageContain from './pageContain'
-import myfooter from './myfooter'
+import myheader from './index_element/myHeader'
+import searchArea from './index_element/searchArea'
+import pageContain from './index_element/pageContain'
+import myfooter from './index_element/myfooter'
 export default {
   name: 'myIndex',
   components: { myheader, searchArea, pageContain, myfooter },

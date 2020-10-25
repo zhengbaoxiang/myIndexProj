@@ -110,7 +110,7 @@ export default {
     height: 24px;
     label{
       background-color: transparent;
-      background: url("../assets/images/controls-431.png");
+      background: url("../../assets/images/controls-431.png");
       cursor: pointer;
       border: 0px none;
       height: 24px;
@@ -175,7 +175,7 @@ export default {
     /*没有标签用虚线*/
     border-style:dashed ;
     overflow: auto;
-    background: url("../assets/images/plus.png") scroll center center no-repeat,url("../assets/images/noise.png" ) repeat;
+    background: url("../../assets/images/plus.png") scroll center center no-repeat,url("../../assets/images/noise.png" ) repeat;
   }
 }
 .pageCard:hover{
