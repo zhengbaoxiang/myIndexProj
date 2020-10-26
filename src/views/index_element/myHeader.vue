@@ -6,10 +6,6 @@
     </div>
     <p class="mesg">要加油呀！(*^_^*)</p>
   </header>
-  <nav>导航栏</nav>
-  <ul class="moving_con">
-      <!-- <img src="images/snow.jpg" alt="snows" /> -->
-  </ul>
 </div>
 </template>
 <script>
@@ -26,7 +22,7 @@ export default {
   },
   created () {
     this.fnTimeleft()
-    setInterval(this.fnTimeleft, 1000)
+    setInterval(this.fnTimeleft, 60000)
   },
   mounted () { },
   activated () {},
@@ -45,9 +41,9 @@ export default {
       // 计算还剩多少分
       var iMinutes = parseInt(((sLeft % 86400) % 3600) / 60)
       // 计算还剩多少秒
-      var iSeconds = sLeft % 60
+      // var iSeconds = sLeft % 60
       var sTr = `距离元旦还剩:<strong>${iDays}</strong>天${this.fnTodou(iHours)}时` +
-                `${this.fnTodou(iMinutes)}分${this.fnTodou(iSeconds)}秒`
+                `${this.fnTodou(iMinutes)}分`
       this.timeStr = sTr
     },
     fnTodou (n) {
@@ -87,27 +83,6 @@ export default {
       color: #ff8800;
     }
 
-  }
-  nav{
-    position: absolute;
-    top: 80px;
-    right: calc(5% + 10px);
-    background-color: #ff8800;
-  }
-  ul.moving_con{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    display: none;
-    img{
-      position: absolute;
-      top: 0px;
-      left: 0;
-      z-index: 9999;
-    }
   }
 }
 

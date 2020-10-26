@@ -197,7 +197,7 @@ section.main_con {
           list-style: outside none none;
           margin: 10px auto 10px;
           overflow: hidden;
-          width: calc(100% - 80px);
+          width: calc(100% - 200px);
           max-width: 1700px;
           height: 100%;
           &>li{

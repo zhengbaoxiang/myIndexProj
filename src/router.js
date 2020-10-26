@@ -14,6 +14,12 @@ let route = new Router({
       path: '/',
       name: 'myIndex',
       component: () => import('./views/myIndex')
+    },
+    {
+      // 留言板
+      path: '/message',
+      name: 'message',
+      component: () => import('./views/message')
     }
   ]
 })

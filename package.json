@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "npm run serve",
-    "serve": "vue-cli-service serve --open --port 80",
+    "serve": "vue-cli-service serve --open --port 81",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },

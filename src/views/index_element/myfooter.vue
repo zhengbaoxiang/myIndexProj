@@ -34,14 +34,14 @@ footer.myfooter{
   bottom: 0px;
   width: 100%;
   /*border-top: 2px solid lightgray;*/
-  background: rgba(242, 242, 242, 0.2);
+  background: rgba(242, 242, 242, 0.1);
   margin: 15px 0 0px;
   /*border-bottom: 1px solid #cecece;*/
   .footer_link {
     text-align: center;
     margin-top: 8px;
     a{
-      color: #666;
+      color: rgb(165, 161, 161);
       font-size: 14px;
     }
     a:hover{
@@ -57,6 +57,8 @@ footer.myfooter{
     text-align: center;
     margin: 5px auto 3px;
     font-size: 13px;
+    color: rgb(165, 161, 161);
+
   }
 }
 </style>

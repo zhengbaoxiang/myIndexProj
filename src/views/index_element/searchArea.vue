@@ -3,7 +3,7 @@
      <form action="http://www.baidu.com/s" class="search_form" target="_blank">
         <a href="http://www.baidu.com/"></a>
         <input type="text" name="wd" id="input_con" placeholder="search" value="" autofocus  autocomplete="off">
-        <input type="submit" name="" id="submit_con" value="百度一下">
+        <input type="submit"  id="submit_con" value="百度一下">
     </form>
 </div>
 </template>
@@ -57,7 +57,7 @@ export default {
 
         font:normal 20px/37px "KaiTi";
         /*/* 去掉获得焦点(点击)时显示的蓝色的框   */
-        /*outline:none;*/
+        outline:none
       }
         #submit_con {
         display: inline-block;
