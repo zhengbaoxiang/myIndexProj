@@ -162,7 +162,7 @@ section.main_con {
         .tab{
           margin: 0 auto;
           max-width: 1650px;
-          width: calc(100% - 120px);
+          width: calc(100% - 200px);
           button{
             float: left;
             height: 30px;

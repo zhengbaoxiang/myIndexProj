@@ -1,6 +1,6 @@
 <template>
 <div class="message">
-  <h1>留言板</h1>
+  <h1>留言板todo</h1>
 </div>
 </template>
 <script>

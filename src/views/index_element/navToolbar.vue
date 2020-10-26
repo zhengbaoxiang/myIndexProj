@@ -1,7 +1,7 @@
 <template >
 <div class='navtoolbar'>
   <span @click="showNav=!showNav">导航栏</span>
-  <nav v-show="true">
+  <nav v-show="showNav">
     <ul>
       <li @click="goto(item.routeName)" class="link" v-for="(item,index) in linkList" :key="index">
         {{item.title}}
