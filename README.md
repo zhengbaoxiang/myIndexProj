@@ -1,7 +1,12 @@
 # my_index
 
 ## 一、项目启动
-### 安装依赖
+### 安装git，拉取代码
+```
+https://github.com/zhenggenshuo/myWebProj.git
+https://github.com.cnpmjs.org/zhenggenshuo/myWebProj.git
+```
+### 安装Node.js,安装依赖
 ```
 npm install
 ```
