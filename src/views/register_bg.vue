@@ -67,9 +67,9 @@
       >确定</mt-button>
     </div>
 
-    <video autoplay loop muted class="bgvid" id="bgvid" v-show="true">
+    <!-- <video autoplay loop muted class="bgvid" id="bgvid" v-show="true">
       <source src="./feng.mp4" type="video/mp4">
-    </video>
+    </video> -->
   </div>
 </template>
 
