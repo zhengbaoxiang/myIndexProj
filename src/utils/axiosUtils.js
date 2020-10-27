@@ -6,8 +6,10 @@ const axiosUtils = {
 
     // 2.添加响应拦截器
     axios.interceptors.response.use(function (response) {
-      if (response.data.errcode === '0000' || response.data.errcode === '0') {
-        return response
+      if (response.data.errcode === '0' || response.data.error_code === 0) {
+        console.log('successed')
+
+        return response.data
       } else {
         return Promise.reject(response)
       }

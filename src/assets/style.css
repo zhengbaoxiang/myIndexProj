@@ -15,7 +15,10 @@ caption,th{text-align:center;}
 q:before,q:after{content:'';}
 abbr,acronym{border:0;}
 
-h1,h2,h3,h4,h5{font-size:100%;font-weight:normal;}
+h1,h2,h3,h4,h5{
+    /* font-size:100%; */
+    font-weight:normal;
+}
 
 
 a,a:visited{
@@ -99,6 +102,9 @@ a,a:visited{
 }
 .text-red{
     color: #F27967;
+}
+.text_right{
+    text-align: right;
 }
 .bg-white{
     background-color: #fff;

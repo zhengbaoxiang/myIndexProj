@@ -16,7 +16,10 @@ Vue.use(gallery, {
 
 Vue.config.productionTip = false
 Vue.prototype.eventHub = new Vue({})// 建立事件中心
-
+// 图片加载出错时，默认展示图片
+Vue.prototype._imageError = function (e) {
+  e.target.src = require('@/assets/images/leimu.jpg')
+}
 Vue.use(MintUI) // 引入ui框架
 Vue.use(style) // 样式重置
 Vue.use(components) // 注册自己的全局components

@@ -10,13 +10,25 @@ module.exports = {
   devServer: {
     disableHostCheck: true,
     proxy: {
-      '/proxy': {
+      '/proxyName': {
         target: 'https://uploadfile.bizhizu.cn',
         pathRewrite: {
-          '^/proxy': ''
+          '^/proxyName': ''
+        }
+      },
+
+      '/v': {
+        target: 'http://v.juhe.cn',
+        pathRewrite: {
+          '^/v': ''
+        }
+      },
+      '/apis': {
+        target: 'http://apis.juhe.cn',
+        pathRewrite: {
+          '^/apis': ''
         }
       }
-
     }
     //   //环境配置
     //   host: '192.168.1.53',
