@@ -11,6 +11,13 @@ const myApi = {
   },
   addRecord: (params) => {
     return axios.post('/orderInspection/addRecord', params)
+  },
+  getPics: (params) => {
+    // const initialurl = 'https://uploadfile.bizhizu.cn/2015/0122/20150122034455582.jpg'
+    const url = '/proxy/2015/0122/20150122034455582.jpg'
+    return axios.get(url, {
+      params: params
+    })
   }
 }
 const wxApi = { }

@@ -1,10 +1,11 @@
 <template>
 <div class="message">
   <h1>留言板todo</h1>
+
 </div>
 </template>
 <script>
-
+import { myApi } from '../assets/api'
 export default {
   name: 'message',
   props: {
@@ -23,9 +24,17 @@ export default {
   created () {
     console.log(this.$route)
   },
-  mounted () { },
+  mounted () {
+    this.getPics()
+  },
   activated () {},
-  methods: {}
+  methods: {
+    getPics (params) {
+      myApi.getPics(params).then((resp) => {
+        console.log(resp)
+      })
+    }
+  }
 
 }
 </script>
