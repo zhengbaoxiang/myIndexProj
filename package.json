@@ -11,6 +11,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "echarts": "^4.9.0",
+    "element-ui": "^2.13.2",
     "exif-js": "^2.3.0",
     "img-vuer": "^0.19.2",
     "js-base64": "^2.5.2",

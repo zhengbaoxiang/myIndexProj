@@ -1,22 +1,24 @@
 <template>
-  <div class="pageButton "  v-if="this.pageNums>1">
-    <a @click.prevent="prevOrNext(-1)"
+  <div class="pagination "  v-if="this.pageNums>1">
+    <a class="page_click_btn"
+      @click.prevent="prevOrNext(-1)"
       v-if="currentPageIndex!==1">上一页
     </a>
     <li
-      class="singelbtn"
+      class="page_click_btn"
       :class="{current:item===currentPageIndex}"
       v-for="(item,index) in pageNums"
       @click="chooseIndex(item)"
       :key="index">
       {{item}}
     </li>
-    <a @click.prevent="prevOrNext(1)"
+    <a class="page_click_btn"
+      @click.prevent="prevOrNext(1)"
       v-if="currentPageIndex!==pageNums">下一页
     </a>
     <div class="page-jumper" >
       <span>到</span>
-      <input  v-model="inputIndex"  class="page-number" type="text">
+      <input  v-model="inputIndex"  class="page-jump-number" type="text">
       <span>页</span>
       <input @click="confirmValue(inputIndex)" class="page-jump-btn" type="button" value="确定">
     </div>
@@ -24,7 +26,7 @@
 </template>
 <script>
 export default {
-  name: 'pageButton',
+  name: 'my-pagination',
   props: {
     dataNums: {
       default: 0
@@ -88,11 +90,10 @@ export default {
       this.$emit('changePages', index, this.counts)
     }
   }
-
 }
 </script>
 <style lang="less" scoped>
-.pageButton{
+.pagination{
   width: 100%;
   height: 35px;
   margin: 15px auto;
@@ -101,16 +102,16 @@ export default {
   align-items: center;
   justify-content: center;
   font-size: 14px;
-  li,a{
+  .page_click_btn{
     display: block;
     color: #999;
     border: 1px solid #ccc;
-    -webkit-border-radius: 4px;
     border-radius: 4px;
     margin-right: 10px;
     padding: 7px 13px;
+    cursor: pointer;
   }
-  a:hover,li:hover{
+  .page_click_btn:hover{
     // color: #fff;
     border-color: #ff8a00;
     background-color: #ff8a00;
@@ -121,6 +122,7 @@ export default {
     background-color: #ff8a00;
 
   }
+
   .page-jumper{
     display: flex;
     align-items: center;
@@ -133,7 +135,7 @@ export default {
       color: #999;
       line-height: 1;
     }
-    .page-number , .page-jump-btn{
+    .page-jump-number , .page-jump-btn{
       display: block;
       height: 36px;
       text-align: center;
@@ -141,7 +143,7 @@ export default {
       font-size:14px ;
       outline: 0;
     }
-    .page-number{
+    .page-jump-number{
       width: 44px;
       color: #999;
       border: 1px solid #ccc;

@@ -11,8 +11,8 @@
         <span>{{item.catalog}}</span>
       </li>
     </ol>
-    <ol class="bookList" >
-      <li v-for="(item,index) in bookList" :key='index'>
+    <ol class="dataList" >
+      <li v-for="(item,index) in dataList" :key='index'>
         <h4>《{{item.title}}》</h4>
         <img :src="item.img" alt="暂无照片"  @error="_imageError">
         <div>
@@ -25,15 +25,15 @@
       </li>
     </ol>
     <div class="clearfix">
-      <pagebutton :dataNums="dataNums" :tagId="tagId"
-      @changePages="changePages"></pagebutton>
+      <my-pageButton
+        :dataNums="dataNums" :tagId="tagId"
+        @changePages="changePages"></my-pageButton>
     </div>
 
 </div>
 </template>
 <script>
 import myUtils from '@/utils/myUtils'
-import pagebutton from '@/views/pageButton'
 export default {
   name: 'booksInfo',
   props: {
@@ -41,11 +41,11 @@ export default {
       default: 0
     }
   },
-  components: { pagebutton },
+  components: { },
   data () {
     return {
       catalogList: [],
-      bookList: [],
+      dataList: [],
       tagId: 0,
       dataNums: 0
 
@@ -59,9 +59,9 @@ export default {
   methods: {
     initialData (name) {
       console.log(this.$route)
-      this.getBookCatalog()
+      this.getCatalog()
     },
-    getBookCatalog () {
+    getCatalog () {
       const saveName = 'BookCatalog'
       const apiParams = ''
       myUtils.getApiData(saveName, 'getBookCatalog', apiParams, (data) => {
@@ -77,7 +77,7 @@ export default {
         counts: params.counts || 8
       }
       myUtils.getApiData(id, 'getBooks', apiParams, (res) => {
-        this.bookList = res.data
+        this.dataList = res.data
         this.dataNums = res.totalNum
       })
     },
@@ -97,10 +97,10 @@ export default {
 <style lang="less" scoped>
 .booksInfo{
   width: 100%;
-  height: 80%;
+  // height: 80%;
   background-color: #fff;
   margin: 0 auto;
-  padding: 50px 100px ;
+  padding: 0px 100px 50px ;
   width: 1010px;
 
   .pageList{
@@ -128,7 +128,7 @@ export default {
     }
 
   }
-  .bookList{
+  .dataList{
     display: flex;
     flex-wrap: wrap;
     margin-top: 30px;
@@ -148,8 +148,10 @@ export default {
       }
       img{
         width: 200px;
-        height: 250px;
-
+        height: 200px;
+      }
+      p{
+        font-size: 14px;
       }
 
     }
