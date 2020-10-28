@@ -1,4 +1,5 @@
 // import store from '../store'
+import { myApi } from '@/assets/api'
 
 const Utils = {
   // 对Date的扩展，将 Date 转化为指定格式的String
@@ -36,6 +37,65 @@ const Utils = {
     }
     return fmt
   },
+
+  // 获取str中的参数并转换为map返回
+  getParamsMap: function (str) {
+    let num
+    let ret = new Map()
+    var arr = str.split('&') // 各个参数放到数组里
+    console.log(window.location.href)
+    console.log(arr)
+    for (var i = 0; i < arr.length; i++) {
+      num = arr[i].indexOf('=')
+      console.log(arr[i].substring(0, num), arr[i].substr(num + 1))
+      if (num > 0) {
+        console.log(ret)
+        ret.set(arr[i].substring(0, num), arr[i].substr(num + 1))
+      }
+    }
+    return ret
+  },
+
+  // 统一处理接口返回的数据，先从localStorage中读取
+  getApiData (saveName, apiName, apiParams, callback) {
+    // 使用resp.result.data获取数据
+
+    const myDataListStr = window.localStorage.getItem(saveName)
+    if (myDataListStr) {
+      console.log('获取本地存储saveName =', saveName)
+      callback(JSON.parse(myDataListStr))
+      return
+    }
+    // 如果本地没有存储过，则使用接口数据
+    myApi[apiName](apiParams).then((resp) => {
+      console.log(apiName, apiParams, '接口resp', resp)
+      const dataListStr = JSON.stringify(resp.result)
+      window.localStorage.setItem(saveName, dataListStr)
+      callback(resp.result)
+    })
+  },
+
+  // json转换为map
+  jsonToMap: function (json) {
+    if (!json) {
+      return null
+    }
+    let obj = JSON.parse(json)
+    let map = new Map()
+    for (let k of Object.keys(obj)) {
+      map.set(k, obj[k])
+    }
+    return map
+  },
+  // map转换为json
+  mapToJson: function (m) {
+    let obj = Object.create(null)
+    for (let [k, v] of m) {
+      obj[k] = v
+    }
+    return JSON.stringify(obj)
+  },
+
   /**
    * 手机号码校验
    */
@@ -127,64 +187,8 @@ const Utils = {
   /* 判断操作系统是否为IOS */
   getUrl: function () {
     return /(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)
-  },
-  // 统一储存变量方法
-  // 后续工作台迁移到我要管家 可统一修改
-  setItem: function (key, vaule) {
-    window.localStorage.setItem(key, vaule)
-  },
-  getItem: function (key) {
-    return window.localStorage.getItem(key)
-  },
-  // 获取str中的参数并转换为map返回
-  getParamsMap: function (str) {
-    let num
-    let ret = new Map()
-    var arr = str.split('&') // 各个参数放到数组里
-    console.log(window.location.href)
-    console.log(arr)
-    for (var i = 0; i < arr.length; i++) {
-      num = arr[i].indexOf('=')
-      console.log(arr[i].substring(0, num), arr[i].substr(num + 1))
-      if (num > 0) {
-        console.log(ret)
-        ret.set(arr[i].substring(0, num), arr[i].substr(num + 1))
-      }
-    }
-    return ret
-  },
-  // json转换为map
-  jsonToMap: function (json) {
-    if (!json) {
-      return null
-    }
-    let obj = JSON.parse(json)
-    let map = new Map()
-    for (let k of Object.keys(obj)) {
-      map.set(k, obj[k])
-    }
-    return map
-  },
-  // map转换为json
-  mapToJson: function (m) {
-    let obj = Object.create(null)
-    for (let [k, v] of m) {
-      obj[k] = v
-    }
-    return JSON.stringify(obj)
-  },
-  // 统一处理科室巡查跳转的需要的科室与床位
-  setBasicInfo (serviceOrder) {
-    let orderWorkerStr = ''
-    if (serviceOrder.orderWorkers.length) {
-      const nameList = serviceOrder.orderWorkers.map(item => {
-        return item.name
-      })
-      orderWorkerStr = nameList.join(',')
-    }
-    window.localStorage.setItem('orderWorkerStr', orderWorkerStr)
-    window.localStorage.setItem('bedName', serviceOrder.bedName)
   }
+
 }
 
 export default Utils

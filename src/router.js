@@ -16,10 +16,16 @@ let route = new Router({
       component: () => import('./views/myIndex')
     },
     {
-      // 留言板
-      path: '/message',
-      name: 'message',
-      component: () => import('./views/message')
+      // 新闻板块
+      path: '/newsInfo',
+      name: 'newsInfo',
+      component: () => import('./views/newsInfo')
+    },
+    {
+      // 图书板块
+      path: '/booksInfo',
+      name: 'booksInfo',
+      component: () => import('./views/booksInfo')
     }
   ]
 })

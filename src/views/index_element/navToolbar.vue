@@ -1,7 +1,7 @@
 <template >
 <div class='navtoolbar'>
   <span @click="showNav=!showNav">导航栏</span>
-  <nav v-show="showNav">
+  <nav v-show="true">
     <ul>
       <li @click="goto(item.routeName)" class="link" v-for="(item,index) in linkList" :key="index">
         {{item.title}}
@@ -21,16 +21,16 @@ export default {
       showNav: false,
       linkList: [
         {
+          title: '新闻板块',
+          routeName: 'newsInfo'
+        },
+        {
+          title: '图书板块',
+          routeName: 'booksInfo'
+        },
+        {
           title: '留言板',
           routeName: 'message'
-        },
-        {
-          title: '留言板3',
-          routeName: 'message3'
-        },
-        {
-          title: '留言板2',
-          routeName: 'message2'
         }
       ]
     }
