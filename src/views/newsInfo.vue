@@ -114,6 +114,7 @@ export default {
         guoji(国际),yule(娱乐),tiyu(体育)junshi(军事),
         keji(科技),caijing(财经),shishang(时尚)
       */
+      this.tagId = type
       myUtils.getApiData(type, 'getNews', type, (res) => {
         this.dataList = res.data.slice(0, 8)
         this.dataNums = res.data.length
@@ -121,12 +122,8 @@ export default {
     },
     changePages (index, counts = 8) {
       // index表示第一页，counts表示每页显示几个，默认为8
-      const params = {
-        startIndex: index * counts - counts,
-        counts: counts
-      }
       console.log(`拿到子组件传值index=${index}，重新调接口`)
-      this.getNews(this.tagId, params)
+      this.getNews(this.tagId)
     }
   }
 }

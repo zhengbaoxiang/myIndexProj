@@ -25,9 +25,9 @@
       </li>
     </ol>
     <div class="clearfix">
-      <my-pageButton
+      <my-pagination
         :dataNums="dataNums" :tagId="tagId"
-        @changePages="changePages"></my-pageButton>
+        @changePages="changePages"></my-pagination>
     </div>
 
 </div>

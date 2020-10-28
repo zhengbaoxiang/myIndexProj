@@ -7,7 +7,7 @@
     <li
       class="page_click_btn"
       :class="{current:item===currentPageIndex}"
-      v-for="(item,index) in pageNums"
+      v-for="(item,index) in pageBtnList"
       @click="chooseIndex(item)"
       :key="index">
       {{item}}
@@ -37,7 +37,8 @@ export default {
   },
   data () {
     return {
-      currentPageIndex: 1,
+      currentPageIndex: 0,
+      pageBtnList: [],
       pageNums: 0,
       inputIndex: '',
       counts: 8 // 还差一个功能，每页显示多少条数据，counts
@@ -48,7 +49,7 @@ export default {
       handler (newval, oldval) {
         console.log('watch=>> dataNums:', newval)
         this.currentPageIndex = 1
-        this.pageNums = parseInt(this.dataNums / this.counts + 1)
+        this.pageNums = 10 || parseInt(this.dataNums / this.counts + 1)
       },
       deep: true,
       immediate: true
@@ -58,25 +59,44 @@ export default {
     tagId (newval) {
       console.log('watch=>> tagId:', newval, this.dataNums)
       this.currentPageIndex = 1
+      // 当前页发生改变时，重新生成翻页按钮
+      this.generateBtnList()
     }
   },
   computed: { },
   created () {},
   mounted () {},
   methods: {
+    generateBtnList () {
+      const index = this.currentPageIndex
+      const tNums = this.pageNums
+      if (tNums > 7) {
+        if (index > 4 && index < tNums - 3) {
+          const tempList = [index - 2, index - 1, index, index + 1, index + 2]
+          this.pageBtnList = [1, '...'].concat(tempList).concat(['...', tNums])
+        } else if (index <= 4) {
+          this.pageBtnList = [1, 2, 3, 4, 5, 6].concat(['...', tNums])
+        } else {
+          const tempList = [tNums - 5, tNums - 4, tNums - 3, tNums - 2, tNums - 1, tNums]
+          this.pageBtnList = [1, '...'].concat(tempList)
+        }
+      } else {
+        this.pageBtnList = [1, 2, 3, 4, 5, 6, 7]
+      }
+      console.log(this.pageBtnList)
+    },
     prevOrNext (i) {
       this.currentPageIndex += i
       this.emitIndex(this.currentPageIndex)
     },
     chooseIndex (index) {
-      if (this.currentPageIndex === index) return
+      if (index === '...' || this.currentPageIndex === index) return
       this.currentPageIndex = index
       this.emitIndex(this.currentPageIndex)
     },
     confirmValue (value) {
       const index = parseInt(value)
       console.log(typeof index, index)
-
       if (index > 0 && index < this.pageNums) {
         this.currentPageIndex = index
         this.emitIndex(this.currentPageIndex)
@@ -88,6 +108,7 @@ export default {
     emitIndex (index) {
       console.log(`返回父级index=${index}，重新载入页面`)
       this.$emit('changePages', index, this.counts)
+      this.generateBtnList()
     }
   }
 }
