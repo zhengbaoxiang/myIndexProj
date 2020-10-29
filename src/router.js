@@ -26,6 +26,12 @@ let route = new Router({
       path: '/booksInfo',
       name: 'booksInfo',
       component: () => import('./views/booksInfo')
+    },
+    {
+      // 学习笔记总结
+      path: '/studyNotes',
+      name: 'studyNotes',
+      component: () => import('./views/studyNotes')
     }
   ]
 })

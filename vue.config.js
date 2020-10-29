@@ -28,6 +28,12 @@ module.exports = {
         pathRewrite: {
           '^/apis': ''
         }
+      },
+      '/netbian': {
+        target: 'http://pic.netbian.com',
+        pathRewrite: {
+          '^/netbian': ''
+        }
       }
     }
     //   //环境配置

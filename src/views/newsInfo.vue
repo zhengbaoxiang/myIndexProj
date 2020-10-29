@@ -1,40 +1,42 @@
 <template>
 <div class="newsInfo">
   <h1>新闻列表</h1>
-    <ol class="catalogList" >
-        <li
-          v-for="(item,index) in catalogList"
-          @click="catalogClick(item.id)"
-          :class="{'selected':tagId===item.id}"
-          :key='index'>
-          <!-- <span>{{item.id}}</span> -->
-          <span>{{item.name}}</span>
-        </li>
-      </ol>
-    <ol class="dataList" >
-            <li v-for="(item,index) in dataList"
-              :key='item.uniquekey || index'
-              >
-              <a :href="item.url" target="__blank">{{item.title}}</a>
-              <div class="img_zone">
-                <img :src="item.thumbnail_pic_s" alt="">
-                <!-- <img :src="item.thumbnail_pic_s02" alt="">
-                <img :src="item.thumbnail_pic_s03" alt=""> -->
-              </div>
-              <p class="">{{item.author_name}}</p>
-              <span>{{item.date}}</span>
-            </li>
+  <ol class="catalogList" >
+      <li
+        v-for="(item,index) in catalogList"
+        @click="catalogClick(item.id)"
+        :class="{'selected':tagId===item.id}"
+        :key='index'>
+        <!-- <span>{{item.id}}</span> -->
+        <span>{{item.name}}</span>
+      </li>
     </ol>
-    <div class="clearfix">
-      <my-pagination
-        :dataNums="dataNums" :tagId="tagId"
-        @changePages="changePages"></my-pagination>
-    </div>
+  <ol class="dataList" >
+          <li v-for="(item,index) in dataList"
+            :key='item.uniquekey || index'
+            >
+            <a :href="item.url" target="__blank">{{item.title}}</a>
+            <div class="img_zone">
+              <img :src="item.thumbnail_pic_s" alt="">
+              <!-- <img :src="item.thumbnail_pic_s02" alt="">
+              <img :src="item.thumbnail_pic_s03" alt=""> -->
+            </div>
+            <p class="">{{item.author_name}}</p>
+            <span>{{item.date}}</span>
+          </li>
+  </ol>
+  <div class="clearfix">
+    <my-pagination
+      :dataNums="dataNums" :tagId="tagId"
+      @changePages="changePages"></my-pagination>
+  </div>
+  <div class="zidingyineirong" v-html="indexHtml"></div>
 
 </div>
 </template>
 <script>
 import myUtils from '@/utils/myUtils'
+import { myApi } from '@/assets/api'
 export default {
   name: 'newsInfo',
   props: {
@@ -49,7 +51,8 @@ export default {
       dataList: [],
       tagId: null,
       dataNums: 0,
-      pageSize: 10
+      pageSize: 10,
+      indexHtml: '<h1>标签内容啦啦啦啦</h1>'
     }
   },
   created () {

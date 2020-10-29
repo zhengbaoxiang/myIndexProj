@@ -3,7 +3,9 @@
   <span @click="showNav=!showNav">导航栏</span>
   <nav v-show="true">
     <ul>
-      <li @click="goto(item.routeName)" class="link" v-for="(item,index) in linkList" :key="index">
+      <li @click="goto(item.routeName)" class="link"
+         v-for="(item,index) in linkList"
+        :key="index">
         {{item.title}}
       </li>
     </ul>
@@ -29,8 +31,8 @@ export default {
           routeName: 'booksInfo'
         },
         {
-          title: '留言板',
-          routeName: 'message'
+          title: '学习笔记',
+          routeName: 'studyNotes'
         }
       ]
     }
@@ -75,7 +77,7 @@ export default {
       box-sizing: border-box;
       padding: 5px 5px 5px 10px;
       line-height: 30px;
-
+      cursor: pointer;
     }
 
   }

@@ -6,11 +6,12 @@ const axiosUtils = {
 
     // 2.添加响应拦截器
     axios.interceptors.response.use(function (response) {
-      if (response.data.errcode === '0' || response.data.error_code === 0) {
+      if (response.data.errcode === '0' || response.data.error_code === 0 || response.statusText === 'OK') {
         console.log('successed')
-
         return response.data
       } else {
+        console.log('返回状态码不匹配，要手动处理查看')
+        // return response
         return Promise.reject(response)
       }
     }, function (error) {

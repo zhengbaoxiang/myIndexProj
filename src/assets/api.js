@@ -44,6 +44,10 @@ const myApi = {
         key: 'e9b14715801194db2573a8bf49a78140'
       }
     })
+  },
+  getPic: () => {
+    const url = '/netbian/4kfengjing/index_5.html'
+    return axios.get(url)
   }
 }
 const wxApi = { }
