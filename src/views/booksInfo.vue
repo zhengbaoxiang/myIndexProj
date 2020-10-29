@@ -4,7 +4,7 @@
     <ol class="pageList" >
       <li
         v-for="(item,index) in catalogList"
-        @click="bookQuery(item.id)"
+        @click="catalogClick(item.id)"
          :class="{'selected':tagId===item.id}"
         :key='index'>
         <!-- <span>{{item.id}}</span> -->
@@ -26,7 +26,8 @@
     </ol>
     <div class="clearfix">
       <my-pagination
-        :dataNums="dataNums" :tagId="tagId"
+        :dataNums="dataNums" :tagId="tagId" jumper
+        :page_size="pageSize"
         @changePages="changePages"></my-pagination>
     </div>
 
@@ -47,7 +48,8 @@ export default {
       catalogList: [],
       dataList: [],
       tagId: 0,
-      dataNums: 0
+      dataNums: 0,
+      pageSize: 8
 
     }
   },
@@ -66,29 +68,34 @@ export default {
       const apiParams = ''
       myUtils.getApiData(saveName, 'getBookCatalog', apiParams, (data) => {
         this.catalogList = data
+        this.tagId = this.catalogList[0].id
+        this.bookQuery(this.tagId)
       })
     },
-    bookQuery (id, params = {}) {
-      if (this.tagId === id && !params.startIndex && params.startIndex !== 0) return
+    catalogClick (id) {
+      if (this.tagId === id) return
       this.tagId = id
+      this.bookQuery(id)
+    },
+    bookQuery (id, pageparams = {}) {
       const apiParams = {
         catalog_id: id,
-        startIndex: params.startIndex || 0,
-        counts: params.counts || 8
+        pn: pageparams.startIndex || 0,
+        rn: pageparams.pageSize || this.pageSize
       }
       myUtils.getApiData(id, 'getBooks', apiParams, (res) => {
         this.dataList = res.data
         this.dataNums = res.totalNum
       })
     },
-    changePages (index, counts = 8) {
+    changePages (index, pageSize) {
       // index表示第一页，counts表示每页显示几个，默认为8
-      const params = {
-        startIndex: index * counts - counts,
-        counts: counts
+      const pageparams = {
+        startIndex: index * pageSize - pageSize,
+        pageSize: pageSize
       }
-      console.log(`拿到子组件传值index=${index}，重新调接口`)
-      this.bookQuery(this.tagId, params)
+      // console.log(`拿到子组件传值index=${index}，重新调接口`)
+      this.bookQuery(this.tagId, pageparams)
     }
   }
 

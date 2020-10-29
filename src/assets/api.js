@@ -38,8 +38,8 @@ const myApi = {
     return axios.get(url, {
       params: {
         catalog_id: params.catalog_id,
-        pn: params.startIndex,
-        rn: params.counts,
+        pn: params.pn,
+        rn: params.rn,
         dtype: 'json',
         key: 'e9b14715801194db2573a8bf49a78140'
       }

@@ -1,5 +1,5 @@
 <template>
-  <div class="pagination "  v-if="this.pageNums>1">
+  <div class="pagination "  v-if="this.pageNums>1" ref="pagination">
     <a class="page_click_btn"
       @click.prevent="prevOrNext(-1)"
       v-if="currentPageIndex!==1">上一页
@@ -8,7 +8,7 @@
       class="page_click_btn"
       :class="{current:item===currentPageIndex}"
       v-for="(item,index) in pageBtnList"
-      @click="chooseIndex(item)"
+      @click="chooseIndex(item,index)"
       :key="index">
       {{item}}
     </li>
@@ -16,7 +16,7 @@
       @click.prevent="prevOrNext(1)"
       v-if="currentPageIndex!==pageNums">下一页
     </a>
-    <div class="page-jumper" >
+    <div class="page-jumper" v-if="jumper!=='false'">
       <span>到</span>
       <input  v-model="inputIndex"  class="page-jump-number" type="text">
       <span>页</span>
@@ -31,8 +31,15 @@ export default {
     dataNums: {
       default: 0
     },
+    page_size: {
+      default: 10
+    },
     tagId: {
       default: 0
+    },
+    // 非绑定传值，组件不写jumper则不启用跳页功能，写jumper，无需赋值即可启用
+    jumper: {
+      default: 'false'
     }
   },
   data () {
@@ -40,22 +47,24 @@ export default {
       currentPageIndex: 0,
       pageBtnList: [],
       pageNums: 0,
-      inputIndex: '',
-      counts: 8 // 还差一个功能，每页显示多少条数据，counts
+      inputIndex: ''
     }
   },
   watch: {
     dataNums: {
       handler (newval, oldval) {
         console.log('watch=>> dataNums:', newval)
+        this.pageNums = this.dataNums % this.page_size === 0 ? this.dataNums / this.page_size : parseInt(this.dataNums / this.page_size + 1)
+        // 初始时不保证所有页面都有tagid的变化，保险起见，写两次
         this.currentPageIndex = 1
-        this.pageNums = 10 || parseInt(this.dataNums / this.counts + 1)
+        // 当前页发生改变时，重新生成翻页按钮
+        this.generateBtnList()
       },
       deep: true,
       immediate: true
     },
     // 由于不同菜单传递相同的dataNum时，不会触发监听，无法刷新页码，
-    // 因此增加唯一标识 tagId作为监听参数
+    // 因此增加菜单的唯一标识 tagId作为监听参数
     tagId (newval) {
       console.log('watch=>> tagId:', newval, this.dataNums)
       this.currentPageIndex = 1
@@ -65,7 +74,8 @@ export default {
   },
   computed: { },
   created () {},
-  mounted () {},
+  mounted () {
+  },
   methods: {
     generateBtnList () {
       const index = this.currentPageIndex
@@ -81,17 +91,24 @@ export default {
           this.pageBtnList = [1, '...'].concat(tempList)
         }
       } else {
-        this.pageBtnList = [1, 2, 3, 4, 5, 6, 7]
+        this.pageBtnList = tNums
       }
-      console.log(this.pageBtnList)
+      // console.log(this.pageBtnList)
     },
     prevOrNext (i) {
       this.currentPageIndex += i
       this.emitIndex(this.currentPageIndex)
     },
-    chooseIndex (index) {
-      if (index === '...' || this.currentPageIndex === index) return
-      this.currentPageIndex = index
+    chooseIndex (pageBtn, index) {
+      if (this.currentPageIndex === pageBtn) return
+
+      if (pageBtn === '...' && (index === 6 || index === 7)) {
+        this.currentPageIndex += 4
+      } else if (pageBtn === '...' && index === 1) {
+        this.currentPageIndex -= 4
+      } else {
+        this.currentPageIndex = pageBtn
+      }
       this.emitIndex(this.currentPageIndex)
     },
     confirmValue (value) {
@@ -106,8 +123,8 @@ export default {
       this.inputIndex = ''
     },
     emitIndex (index) {
-      console.log(`返回父级index=${index}，重新载入页面`)
-      this.$emit('changePages', index, this.counts)
+      // console.log(`返回父级index=${index}，重新载入页面`)
+      this.$emit('changePages', index, this.page_size)
       this.generateBtnList()
     }
   }
