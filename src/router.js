@@ -31,7 +31,31 @@ let route = new Router({
       // 学习笔记总结
       path: '/studyNotes',
       name: 'studyNotes',
-      component: () => import('./views/studyNotes')
+      component: () => import('./views/studyNotes'),
+      children: [
+        {
+          path: 'booksInfo',
+          name: 'booksInfo',
+          component: () => import('./views/booksInfo')
+        },
+        {
+          path: 'htmlBasic',
+          name: 'htmlBasic',
+          component: () => import('./views/studyNotesFiles/htmlBasic')
+        },
+        {
+          path: 'htmlBasic',
+          name: 'htmlBasic',
+          component: () => import('./views/studyNotesFiles/htmlBasic')
+        },
+        {
+          path: 'htmlBasic',
+          name: 'htmlBasic',
+          component: () => import('./views/studyNotesFiles/htmlBasic')
+        }
+
+      ]
+
     }
   ]
 })

@@ -36,7 +36,7 @@
 </template>
 <script>
 import myUtils from '@/utils/myUtils'
-import { myApi } from '@/assets/api'
+// import { myApi } from '@/assets/api'
 export default {
   name: 'newsInfo',
   props: {

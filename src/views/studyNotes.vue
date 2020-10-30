@@ -6,26 +6,27 @@
       >点击折叠
     </div>
     <ol class="catalogList" v-show="showCatalog">
-        <li
-          v-for="(item,index) in catalogList"
-          @click="catalogClick(item.id)"
-          :class="{'selected':tagId===item.id}"
-          :key='index'>
-          <!-- <span>{{item.id}}</span> -->
-          <span>{{item.name}}</span>
-        </li>
+      <div>
+        <router-link to="/studyNotes/booksInfo">跳转-demo</router-link>
+      </div>
+      <li
+        v-for="(item,index) in catalogList"
+        @click="catalogClick(item.routerName)"
+        :class="{'selected':tagId===item.title}"
+        :key='index'
+      >
+        <router-link :to="{path:'/studyNotes/'+item.routerName+'?'+index}">跳转{{item.title}}</router-link>
+      </li>
       </ol>
-
   </div>
 
   <section class="content clearfix" :class="{wider:!showCatalog}">
-    <div class="main" v-for="(i,index) in 100" :key='index'>内容</div>
+    <router-view/>
   </section>
 </div>
 </template>
 <script>
-// import myUtils from '@/utils/myUtils'
-// import { myApi } from '@/assets/api'
+import pageList from '@/views/studyNotesFiles/pages'
 export default {
   name: 'newsInfo',
   props: {
@@ -54,50 +55,10 @@ export default {
     },
     getCatalog () {
       // 自定义导航栏目录
-      this.catalogList = [
-        {
-          name: '头条',
-          id: 'top'
-        },
-        {
-          name: '社会',
-          id: 'shehui'
-        },
-        {
-          name: '国内',
-          id: 'guonei'
-        },
-        {
-          name: '国际',
-          id: 'guoji'
-        },
-        {
-          name: '娱乐',
-          id: 'yule'
-        },
-        {
-          name: '体育',
-          id: 'tiyu'
-        },
-        {
-          name: '军事',
-          id: 'junshi'
-        },
-        {
-          name: '科技',
-          id: 'keji'
-        },
-        {
-          name: '财经',
-          id: 'caijing'
-        },
-        {
-          name: '时尚',
-          id: 'shishang'
-        }
-      ]
+      // console.log(pageList)
+      this.catalogList = pageList
       // 初始加载第一个
-      this.tagId = this.catalogList[0].id
+      this.tagId = this.catalogList[0].routerName
     },
     catalogClick (id) {
       if (this.tagId === id) return
@@ -158,7 +119,7 @@ export default {
     min-width: 800px;
     width: calc(100% - 300px);
   }
-  section.wider{
+  section.content.wider{
     margin: 0 auto ;
     width: calc(100% - 100px);
   }

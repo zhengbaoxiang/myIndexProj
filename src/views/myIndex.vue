@@ -1,4 +1,4 @@
-<template>
+.<template>
 <div class="myIndex">
   <myheader></myheader>
   <searchArea></searchArea>
