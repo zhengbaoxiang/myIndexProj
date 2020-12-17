@@ -1,19 +1,19 @@
 const pageList = [
   {
     title: '头条1',
-    routerName: 'htmlBasic'
+    routerName: 'htmlBasic1'
   },
   {
     title: '社会2',
-    routerName: 'htmlBasic'
+    routerName: 'htmlBasic2'
   },
   {
     title: '国内3',
-    routerName: 'htmlBasic'
+    routerName: 'htmlBasic3'
   },
   {
-    title: '国际',
-    routerName: 'htmlBasic'
+    title: '国际4',
+    routerName: 'htmlBasic4'
   },
   {
     title: '娱乐',

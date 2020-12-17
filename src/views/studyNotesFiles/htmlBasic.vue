@@ -1,10 +1,10 @@
 <template >
 <div class="htmlBasic">
-  <div class="container mtb10">
-      <h1 class="bigTitle">大标题居中</h1>
-      <div class="midcont">
+  <div class="container mtb10 clearfix">
+      <h1 class="bigTitle">{{title}}</h1>
+      <div class="midcont clearfix">
         <h2 class="midTitle">二级标题</h2>
-          <div class="smallcont">
+          <div class="smallcont clearfix">
             <h3 class="smallTitle">三级标题</h3>
             <p class="text">
               文本锻炼卡德加了法律的附近开了法律骄傲的立刻解
@@ -47,18 +47,25 @@ export default {
   name: 'htmlBasic',
   data () {
     return {
-      id: '1'
+      id: '1',
+      title: '大标题居中'
     }
   },
   created () {
-
+    this.initial()
   },
   mounted () {
 
   },
+  activated () {
+    console.log('activated', this.$route.query)
+  },
   methods: {
     initial () {
       console.log('初始化')
+      console.log(this.$route.query)
+      this.title = this.$route.query.title
+      // this.$set(this, 'title', this.$route.query.title)
     }
   }
 
@@ -69,24 +76,25 @@ export default {
   .container{
     min-height: 100px;
     .bigTitle{
-      font-size: 34px;
+      font-size: 44px;
+      height: 60px;
       font-weight: bold;
      }
     .midTitle{
-      margin: 10px 30px;
-      font-size: 28px;
+      margin: 20px 30px 0;
+      font-size: 30px;
       font-weight: bold;
       text-align: left;
 
      }
     .smallTitle{
-      margin: 10px 40px;
+      margin: 10px 40px 0;
       font-size: 22px;
       font-weight: normal;
       text-align: left;
       }
     .text{
-      margin:20px  50px;
+      margin:20px  50px 20px;
       padding: 5px;
       text-align: left;
       }
