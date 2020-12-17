@@ -75,6 +75,7 @@ export default {
     catalogClick (id) {
       if (this.tagId === id) return
       this.tagId = id
+      this.dataNums = 0
       this.bookQuery(id)
     },
     bookQuery (id, pageparams = {}) {

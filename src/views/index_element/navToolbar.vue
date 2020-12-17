@@ -44,14 +44,15 @@ export default {
   methods: {
     goto (name) {
       console.log(name)
-      this.$router.push({
-        name: name,
-        path: name,
-        query: { id: 1 },
-        params: { index: 2 }
-      }
-      )
-      // this.$route.query
+      // this.$router.push({
+      //   name: name,
+      //   path: name,
+      //   query: { id: 1 },
+      //   params: { index: 2 }
+      // })
+      // console.log(window.location)
+      const url = window.location.href + name + '?id=1'
+      window.open(url, '_blank')
     }
   }
 }
