@@ -39,18 +39,18 @@ let route = new Router({
           component: () => import('./views/booksInfo')
         },
         {
-          path: 'htmlBasic',
-          name: 'htmlBasic',
+          path: 'htmlBasic2',
+          name: 'htmlBasic22',
           component: () => import('./views/studyNotesFiles/htmlBasic')
         },
         {
-          path: 'htmlBasic',
-          name: 'htmlBasic',
+          path: 'htmlBasic3',
+          name: 'htmlBasic33',
           component: () => import('./views/studyNotesFiles/htmlBasic')
         },
         {
-          path: 'htmlBasic',
-          name: 'htmlBasic',
+          path: 'htmlBasic4',
+          name: 'htmlBasic44',
           component: () => import('./views/studyNotesFiles/htmlBasic')
         }
 

@@ -11,17 +11,19 @@
       </div>
       <li
         v-for="(item,index) in catalogList"
-        @click="catalogClick(item.routerName)"
+        @click="catalogClick(item)"
+        class="rel"
         :class="{'selected':tagId===item.title}"
         :key='index'
       >
-        <router-link :to="{path:'/studyNotes/'+item.routerName+'?'+index}">跳转{{item.title}}</router-link>
+        <router-link :to="{path:'/studyNotes/'+item.routerName+'?title='+index+item.title}">跳转{{item.title}}</router-link>
+        <i class="mint-cell-arrow-right"></i>
       </li>
       </ol>
   </div>
 
   <section class="content clearfix" :class="{wider:!showCatalog}">
-    <router-view/>
+    <router-view :key="tagId"/>
   </section>
 </div>
 </template>
@@ -43,14 +45,16 @@ export default {
     }
   },
   created () {
+
   },
   mounted () {
     this.initialData()
   },
-  activated () {},
+  activated () {
+    console.log('activated', this.$route)
+  },
   methods: {
     initialData () {
-      console.log(this.$route)
       this.getCatalog()
     },
     getCatalog () {
@@ -60,10 +64,10 @@ export default {
       // 初始加载第一个
       this.tagId = this.catalogList[0].routerName
     },
-    catalogClick (id) {
-      if (this.tagId === id) return
-      this.tagId = id
-      console.log(id)
+    catalogClick (item) {
+      if (this.tagId === item.title) return
+      this.tagId = item.title
+      console.log(item.title)
     }
   }
 }

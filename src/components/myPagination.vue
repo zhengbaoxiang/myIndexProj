@@ -67,7 +67,7 @@ export default {
     // 因此增加菜单的唯一标识 tagId作为监听参数
     tagId (newval) {
       console.log('watch=>> tagId:', newval, this.dataNums)
-      this.currentPageIndex = 1
+      // this.currentPageIndex = 1
       // 当前页发生改变时，重新生成翻页按钮
       this.generateBtnList()
     }
