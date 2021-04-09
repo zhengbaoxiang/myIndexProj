@@ -3,6 +3,7 @@
 ## 一、项目启动
 ### 安装git，拉取代码
 ```
+git@github.com:zhenggenshuo/myWebProj.git
 https://github.com/zhenggenshuo/myWebProj.git
 https://github.com.cnpmjs.org/zhenggenshuo/myWebProj.git
 ```

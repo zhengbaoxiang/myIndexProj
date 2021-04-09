@@ -27,6 +27,7 @@ Vue.use(components) // 注册自己的全局components
 // 拿到全局配置项，存储在window对象下
 axios.get('/myConfig.json').then((response) => {
   window.myConfig = response.data
+  console.log(response)
   // axios进行初始化
   axiosUtils.axiosInit()
 

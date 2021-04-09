@@ -237,6 +237,7 @@ section.main_con {
         }
       }
     }
+
     .overlay{
           background: rgba(25,25,25,0.3) no-repeat repeat;
           position: fixed;
