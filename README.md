@@ -42,7 +42,3 @@ npm run build
   * vue-cli 3.4.0 配置指南 ：  https://cli.vuejs.org/config/
 
 
-## 	三、微信端本地开发指南
-
-1. 本地改hosts  
-
