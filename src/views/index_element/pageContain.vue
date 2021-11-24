@@ -63,6 +63,8 @@ export default {
       tabId: 1,
       dataList: [],
       setLength: 24,
+      rows: 4,
+      columns: 4,
       currentData: {},
       showPopup: false
     }
@@ -70,16 +72,30 @@ export default {
   created () {
     this.initialData(`myUrlList_${this.tabId}`)
   },
-  mounted () { },
+  mounted () {
+    // 监听change事件，同时附带回调函数处理传值
+    this.eventHub.$on('gridNumChange', this.handleChange)
+  },
   activated () {},
   methods: {
+    handleChange (par) {
+      // console.log('change:参数：',a,b)
+      this.initialData(`myUrlList_${this.tabId}`)
+    },
+
     initialData (name) {
+      // 获取布局个数
+      let temp = window.localStorage.getItem('gridNum')
+      this.setLength = temp ? Number(temp) : this.setLength
+
       // 从localStorage中读取
       const myUrlListStr = window.localStorage.getItem(name)
       // 读取初始值
       const initialDataList = window.myConfig.initialDataList
+
       const initialDataListLength = initialDataList.length
       let tempList = []
+
       // 如果本地没有存储过，则使用初始数据
       if (!myUrlListStr) {
         for (let i = 0; i < this.setLength - initialDataListLength; i++) {
@@ -87,8 +103,12 @@ export default {
         }
         this.dataList = initialDataList.concat(tempList)
       } else {
-        const myUrlList = JSON.parse(myUrlListStr)
-        this.dataList = myUrlList
+        let myUrlList = JSON.parse(myUrlListStr)
+        for (let i = 0; i < this.setLength - myUrlList.length; i++) {
+          tempList.push({ id: myUrlList.length + i })
+        }
+        myUrlList = JSON.parse(myUrlListStr)
+        this.dataList = myUrlList.slice(0, this.setLength)
       }
     },
     tabChange (value) {

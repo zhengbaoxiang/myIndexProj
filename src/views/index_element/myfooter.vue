@@ -9,7 +9,6 @@
         <span>|</span>
       <a href="#">forever</a>
     </div>
-    <p>每天都要开开心心哒</p>
   </footer>
 </template>
 <script>

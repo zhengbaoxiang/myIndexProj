@@ -17,7 +17,8 @@ export default {
   props: { },
   data () {
     return {
-      timeStr: ''
+      timeStr: '',
+      initialTime: '2022-01-01'
     }
   },
   created () {
@@ -31,7 +32,7 @@ export default {
       // 实际开发需要通过ajax来读取后台的时间
       var sNow = new Date()
       // 未来时间：12月31日晚24点
-      var sFuture = new Date(2021, 0, 1, 0, 0, 0)
+      var sFuture = new Date(this.initialTime).setHours(0, 0, 0)
       // 计算还有多少秒
       var sLeft = parseInt((sFuture - sNow) / 1000)
       // 计算还剩多少天
@@ -42,7 +43,7 @@ export default {
       var iMinutes = parseInt(((sLeft % 86400) % 3600) / 60)
       // 计算还剩多少秒
       // var iSeconds = sLeft % 60
-      var sTr = `距离元旦还剩:<strong>${iDays}</strong>天${this.fnTodou(iHours)}时` +
+      var sTr = `距离${this.initialTime}还剩:<strong>${iDays}</strong>天${this.fnTodou(iHours)}时` +
                 `${this.fnTodou(iMinutes)}分`
       this.timeStr = sTr
     },

@@ -33,6 +33,10 @@ export default {
         {
           title: '学习笔记',
           routeName: 'studyNotes'
+        },
+        {
+          title: '图片识别文字',
+          routeName: 'picTotext'
         }
       ]
     }
@@ -51,7 +55,7 @@ export default {
       //   params: { index: 2 }
       // })
       // console.log(window.location)
-      const url = window.location.href + name + '?id=1'
+      const url = window.location.href + name + ''
       window.open(url, '_blank')
     }
   }

@@ -9,7 +9,10 @@ https://github.com.cnpmjs.org/zhenggenshuo/myWebProj.git
 ```
 ### 安装Node.js,安装依赖
 ```
-npm install
+1 npm install
+2 手动启动点击server521.bat
+3 将 vue-server-selfstart.放于下方目录可实现开机自启动，
+C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp
 ```
 ### 本地开发
 ```

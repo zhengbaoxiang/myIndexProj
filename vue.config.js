@@ -16,9 +16,17 @@ module.exports = {
           '^/proxyName': ''
         }
       },
+      '/baiduApi': {
+        target: 'https://aip.baidubce.com',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/baiduApi': ''
+        }
+      },
 
       '/v': {
         target: 'http://v.juhe.cn',
+        changeOrigin: true,
         pathRewrite: {
           '^/v': ''
         }

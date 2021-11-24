@@ -3,6 +3,7 @@
   <myheader></myheader>
   <searchArea></searchArea>
   <navtoolbar></navtoolbar>
+  <toolbar></toolbar>
   <pageContain></pageContain>
   <myfooter></myfooter>
 </div>
@@ -10,12 +11,14 @@
 <script>
 import myheader from './index_element/myHeader'
 import navtoolbar from './index_element/navToolbar'
+import toolbar from './index_element/toolbar'
+
 import searchArea from './index_element/searchArea'
 import pageContain from './index_element/pageContain'
 import myfooter from './index_element/myfooter'
 export default {
   name: 'myIndex',
-  components: { myheader, searchArea, navtoolbar, pageContain, myfooter },
+  components: { myheader, searchArea, navtoolbar, toolbar, pageContain, myfooter },
   props: {
     tab_index: {
       default: 0

@@ -1,14 +1,20 @@
 import Vue from 'vue'
-import App from './App.vue'
-import router from './router'
-import store from './store'
-import MintUI from 'mint-ui'
+import router from './router/index'
+import store from './store/index'
+
 import style from './assets/style.css' // mint-ui/lib/style.css
-import components from './components/index'
-import MyUtils from './utils/myUtils'
+// import MintUI from 'mint-ui'
+import ElementUi from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css' // 引入所有样式
+
 import axios from 'axios'
 import axiosUtils from './utils/axiosUtils'
+
+import MyUtils from './utils/myUtils'
 import gallery from 'img-vuer'
+
+import App from './App.vue'
+import components from './components/index'
 
 Vue.use(gallery, {
   useCloseButton: false // trigger gallery close with close button, default true
@@ -20,7 +26,8 @@ Vue.prototype.eventHub = new Vue({})// 建立事件中心
 Vue.prototype._imageError = function (e) {
   e.target.src = require('@/assets/images/falling.jpg')
 }
-Vue.use(MintUI) // 引入ui框架
+// Vue.use(MintUI) // 引入ui框架
+Vue.use(ElementUi) // 引入ui框架
 Vue.use(style) // 样式重置
 Vue.use(components) // 注册自己的全局components
 
