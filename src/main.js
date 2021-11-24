@@ -16,6 +16,10 @@ import gallery from 'img-vuer'
 import App from './App.vue'
 import components from './components/index'
 
+import config from '../config/index'
+// 拿到全局配置项，存储在window对象下
+window.myConfig = config
+
 Vue.use(gallery, {
   useCloseButton: false // trigger gallery close with close button, default true
 })
@@ -31,19 +35,14 @@ Vue.use(ElementUi) // 引入ui框架
 Vue.use(style) // 样式重置
 Vue.use(components) // 注册自己的全局components
 
-// 拿到全局配置项，存储在window对象下
-axios.get('/myConfig.json').then((response) => {
-  window.myConfig = response.data
-  console.log(response)
-  // axios进行初始化
-  axiosUtils.axiosInit()
+// axios进行初始化
+axiosUtils.axiosInit()
 
-  new Vue({
-    router,
-    store,
-    render: (h) => h(App)
-  }).$mount('#app')
-})
+new Vue({
+  router,
+  store,
+  render: (h) => h(App)
+}).$mount('#app')
 
 // 把自定义的日期格式化函数绑到日期对象原先中
 // eslint-disable-next-line no-extend-native

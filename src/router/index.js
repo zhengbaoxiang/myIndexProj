@@ -11,7 +11,7 @@ const routes = [
     // 首页
     path: '/',
     name: 'myIndex',
-    component: () => import('@/views/myIndex')
+    component: () => import('@/views/home/myIndex')
   },
   {
     // 新闻板块

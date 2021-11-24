@@ -35,7 +35,7 @@ export default {
           routeName: 'studyNotes'
         },
         {
-          title: '图片识别文字',
+          title: '图片识别',
           routeName: 'picTotext'
         }
       ]

@@ -1,6 +1,19 @@
 // import store from '../store'
 import { myApi } from '@/assets/api'
 
+// 将读取的二进制图片，转为base64 URl可直接赋值给src
+export const blobToDataURL = (blob, callback) => {
+  const reader = new FileReader()
+  reader.onload = (event) => {
+    // console.log('event', event)
+    let base64Url = event.target.result
+    // const base64Url = event.currentTarget.result
+    // const base64Url = event.srcElement.result
+    callback(base64Url)
+  }
+  reader.readAsDataURL(blob)
+}
+
 const Utils = {
   // 对Date的扩展，将 Date 转化为指定格式的String
   // 月(M)、日(d)、小时(h)、分(m)、秒(s)、季度(q) 可以用 1-2 个占位符，
