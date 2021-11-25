@@ -16,7 +16,7 @@ import gallery from 'img-vuer'
 import App from './App.vue'
 import components from './components/index'
 
-import config from '../config/index'
+import config from './config/index'
 // 拿到全局配置项，存储在window对象下
 window.myConfig = config
 
