@@ -4,6 +4,7 @@
             <div class="selectZone">
                 <el-radio v-model="ocrType" :label="0">标准版(测试用)</el-radio>
                 <el-radio v-model="ocrType" :label="1">高精度版</el-radio>
+                <el-radio v-model="ocrType" :label="2">手写文字识别</el-radio>
             </div>
             <el-upload
                 class="upload-demo"
@@ -89,6 +90,8 @@ export default {
             let apiName = ''
             if (this.ocrType === 1) {
                 apiName = 'accurate_basic'
+            } else if (this.ocrType === 2) {
+                apiName = 'handwriting'
             } else {
                 apiName = 'general_basic'
             }
