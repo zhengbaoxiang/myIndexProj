@@ -1,30 +1,41 @@
 # my_index
 
 ## 一、项目启动
-### 安装git，拉取代码
+
+### 安装 git，拉取代码
+
 ```
-git@github.com:zhenggenshuo/myWebProj.git
-https://github.com/zhenggenshuo/myWebProj.git
-https://github.com.cnpmjs.org/zhenggenshuo/myWebProj.git
+git@github.com:zhenggenshuo/myIndexProj.git
+https://github.com/zhenggenshuo/myIndexProj.git
+
+git config --global http.sslVerify "false"
 ```
-### 安装Node.js,安装依赖
+
+### 安装 Node.js,安装依赖
+
 ```
 1 npm install
 2 手动启动点击server521.bat
 3 将 vue-server-selfstart.放于下方目录可实现开机自启动，
 C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp
 ```
+
 ### 本地开发
+
 ```
 npm run start / npm run serve
 ```
+
 ### 打包部署
+
 ```
 npm run build
 ```
-### VScode配置，保存即格式化
 
-先安装扩展如prettier, eslint, vetur等，然后file - preferences - settings - 右上角打开json配置，配置如下，复制粘贴:
+### VScode 配置，保存即格式化
+
+先安装扩展如 prettier, eslint, vetur 等，然后 file - preferences - settings - 右上角打开 json 配置，配置如下，复制粘贴:
+
 ```
     {
       "window.zoomLevel": 1,
@@ -37,11 +48,8 @@ npm run build
     }
 ```
 
-
 ## 二、参考文档
 
-  * UI框架参考 mint-ui ：  https://mint-ui.github.io/docs/#/zh-cn2
+-   UI 框架参考 mint-ui ： https://mint-ui.github.io/docs/#/zh-cn2
 
-  * vue-cli 3.4.0 配置指南 ：  https://cli.vuejs.org/config/
-
-
+-   vue-cli 3.4.0 配置指南 ： https://cli.vuejs.org/config/

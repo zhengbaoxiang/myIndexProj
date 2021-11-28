@@ -32,10 +32,10 @@ export default {
                     title: '图书板块',
                     routeName: 'booksInfo'
                 },
-                {
-                    title: '学习笔记',
-                    routeName: 'studyNotes'
-                },
+                // {
+                //     title: '学习笔记',
+                //     routeName: 'studyNotes'
+                // },
                 {
                     title: '图片识别',
                     routeName: 'picTotext'

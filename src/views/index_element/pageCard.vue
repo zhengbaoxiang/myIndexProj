@@ -84,7 +84,16 @@ export default {
             this.$emit('editInfo', this.paramsObj)
         },
         clickDel(e) {
-            this.$emit('delInfo', this.paramsObj)
+            this.$confirm('是否要删除该卡片?', '提示', {
+                confirmButtonText: '删除',
+                cancelButtonText: '取消',
+                type: 'warning'
+            })
+                .then(() => {
+                    this.$message.success({ message: '删除成功!' })
+                    this.$emit('delInfo', this.paramsObj)
+                })
+                .catch(() => {})
         },
         fileChange(el) {
             if (!el.target.files[0].size) return
