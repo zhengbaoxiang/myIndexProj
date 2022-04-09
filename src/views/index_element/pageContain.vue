@@ -1,50 +1,12 @@
 <template>
     <section class="main_con">
         <div class="list_zone ">
-            <!-- <div class="tab_con">
-                <div class="tab">
-                    <button
-                        @click="tabChange(1)"
-                        :class="{ current: tabId === 1 }"
-                    >
-                        常用
-                    </button>
-                    <button
-                        @click="tabChange(2)"
-                        :class="{ current: tabId === 2 }"
-                    >
-                        娱乐
-                    </button>
-                    <button
-                        @click="tabChange(3)"
-                        :class="{ current: tabId === 3 }"
-                    >
-                        学习
-                    </button>
-                </div>
-            </div> -->
             <div id="grid" :class="[setLength === 24 ? 'c6' : 'c4']">
-                <ol class="pageList" :class="{ active: tabId === 1 }">
-                    <li v-for="(item, index) in dataList" :key="index">
-                        <pageCard
-                            :paramsObj="item"
-                            @editInfo="editInfo"
-                            @delInfo="delInfo"
-                            @getPicName="getPicName"
-                        ></pageCard>
-                    </li>
-                </ol>
-                <ol class="pageList" :class="{ active: tabId === 2 }">
-                    <li v-for="(item, index) in dataList" :key="index">
-                        <pageCard
-                            :paramsObj="item"
-                            @editInfo="editInfo"
-                            @delInfo="delInfo"
-                            @getPicName="getPicName"
-                        ></pageCard>
-                    </li>
-                </ol>
-                <ol class="pageList" :class="{ active: tabId === 3 }">
+                <ol
+                    class="pageList"
+                    id="pageList"
+                    :class="{ active: tabId === 1 }"
+                >
                     <li v-for="(item, index) in dataList" :key="index">
                         <pageCard
                             :paramsObj="item"
@@ -80,6 +42,7 @@
     </section>
 </template>
 <script>
+import Sortable from 'sortablejs'
 import pageCard from './pageCard'
 export default {
     name: 'pageContain',
@@ -94,27 +57,37 @@ export default {
             tabId: 1,
             dataList: [],
             setLength: 24,
-            rows: 4,
-            columns: 4,
             currentData: {},
             showPopup: false
         }
     },
     created() {
-        this.initialData(`myUrlList_${this.tabId}`)
+        this.getDataList(`myUrlList_${this.tabId}`)
     },
     mounted() {
         // 监听change事件，同时附带回调函数处理传值
-        this.eventHub.$on('gridNumChange', this.handleChange)
+        EVENT_BUS.$on('gridNumChange', this.handleChange)
+        this.initialSort()
     },
     activated() {},
     methods: {
+        initialSort() {
+            const el = document.getElementById('pageList')
+            new Sortable(el, {
+                animation: 150,
+                ghostClass: 'self-define-class'
+            })
+            // const sortableInstance = Sortable.create(el)
+        },
         handleChange(par) {
             // console.log('change:参数：',a,b)
-            this.initialData(`myUrlList_${this.tabId}`)
+            this.getDataList(`myUrlList_${this.tabId}`)
         },
-
-        initialData(name) {
+        tabChange(value) {
+            this.tabId = value
+            this.getDataList(`myUrlList_${value}`)
+        },
+        getDataList(name) {
             // 获取布局个数
             let temp = window.localStorage.getItem('gridNum')
             this.setLength = temp ? Number(temp) : this.setLength
@@ -123,10 +96,9 @@ export default {
             const myUrlListStr = window.localStorage.getItem(name)
             // 读取初始值
             const initialDataList = window.myConfig.initialDataList
-
             const initialDataListLength = initialDataList.length
-            let tempList = []
 
+            let tempList = []
             // 如果本地没有存储过，则使用初始数据
             if (!myUrlListStr) {
                 for (
@@ -134,23 +106,18 @@ export default {
                     i < this.setLength - initialDataListLength;
                     i++
                 ) {
-                    tempList.push({ id: initialDataListLength + i })
+                    tempList.push({
+                        id: initialDataListLength + i
+                    })
                 }
                 this.dataList = initialDataList.concat(tempList)
             } else {
                 let myUrlList = JSON.parse(myUrlListStr)
-                for (let i = 0; i < this.setLength - myUrlList.length; i++) {
-                    tempList.push({ id: myUrlList.length + i })
-                }
-                myUrlList = JSON.parse(myUrlListStr)
                 this.dataList = myUrlList.slice(0, this.setLength)
             }
+            console.log('->', this.dataList, '<')
         },
-        tabChange(value) {
-            this.tabId = value
-            const name = `myUrlList_${value}`
-            this.initialData(name)
-        },
+
         editInfo(data) {
             // 直接=赋值是浅拷贝，数据会联动
             this.currentData = this.dataAssign(data)
@@ -208,14 +175,14 @@ section.main_con {
     .list_zone {
         position: relative;
         width: 100%;
-        height: calc(100% - 130px);
+        height: ~'calc(100% - 130px)';
         overflow: hidden;
         .tab_con {
             height: 30px;
             .tab {
                 margin: 0 auto;
                 max-width: 1650px;
-                width: calc(100% - 200px);
+                width: ~'calc(100% - 200px)';
                 button {
                     // float: left;
                     height: 30px;
@@ -245,14 +212,14 @@ section.main_con {
                 list-style: outside none none;
                 margin: 10px auto 10px;
                 overflow: hidden;
-                width: calc(100% - 200px);
+                width: ~'calc(100% - 200px)';
                 max-width: 1700px;
                 height: 100%;
                 & > li {
                     float: left;
                     height: 152px;
                     min-width: 100px;
-                    width: calc(16.6% - 20px);
+                    width: ~'calc(16.6% - 20px)';
 
                     transition: height 500ms linear;
                     margin: 10px;
@@ -284,17 +251,17 @@ section.main_con {
             }
         }
         #grid.c6 ol.pageList {
-            width: calc(100% - 200px);
+            width: ~'calc(100% - 200px)';
             li {
                 margin: 10px;
-                width: calc(16.6% - 25px);
+                width: ~'calc(16.6% - 25px)';
             }
         }
         #grid.c4 ol.pageList {
-            width: calc(80% - 100px);
+            width: ~'calc(80% - 100px)';
             li {
                 margin: 10px 15px;
-                width: calc(25% - 50px);
+                width: ~'calc(25% - 50px)';
             }
         }
     }

@@ -1,85 +1,59 @@
-
 const path = require('path')
-function resolve (dir) {
-  return path.join(__dirname, dir)
+
+function resolve(dir) {
+    return path.join(__dirname, dir)
 }
 
+const publicPath = process.env.VUE_APP_PUBLIC_PATH
+
 module.exports = {
-  productionSourceMap: false, // 生产环境是否生成 sourceMap 文件
-  // 反向代理
-  devServer: {
-    disableHostCheck: true,
-    proxy: {
-      '/proxyName': {
-        target: 'https://uploadfile.bizhizu.cn',
-        pathRewrite: {
-          '^/proxyName': ''
+    publicPath: publicPath,
+    productionSourceMap: false, // 生产环境是否生成 sourceMap 文件
+    chainWebpack: (config) => {
+        config.resolve.alias
+            .set('@', resolve('src')) // key,value自行定义，比如.set('@@', resolve('src/components'))
+            .set('_c', resolve('src/components'))
+    },
+    // 反向代理
+    devServer: {
+        open: true, // 自动打开浏览器
+        port: 5210,
+        disableHostCheck: true,
+        proxy: {
+            '/baiduApi': {
+                target: 'https://aip.baidubce.com',
+                changeOrigin: true,
+                pathRewrite: {
+                    '^/baiduApi': ''
+                }
+            }
         }
-      },
-      '/baiduApi': {
-        target: 'https://aip.baidubce.com',
-        changeOrigin: true,
-        pathRewrite: {
-          '^/baiduApi': ''
-        }
-      },
+    },
 
-      '/v': {
-        target: 'http://v.juhe.cn',
-        changeOrigin: true,
-        pathRewrite: {
-          '^/v': ''
+    // 若要兼容ie11则打开此项 ,调整 webpack 配置
+    configureWebpack: {
+        module: {
+            rules: [
+                // 'transform-runtime' 插件告诉 Babel
+                // 要引用 runtime 来代替注入。
+                {
+                    test: /\.m?js$/,
+                    include: [
+                        resolve('src'),
+                        resolve('test'),
+                        resolve('node_modules/webpack-dev-server/client'),
+                        resolve('node_modules/iview/src'),
+                        resolve('node_modules/tree-table-vue/lib'),
+                        resolve('node_modules/v-org-tree/dist')
+                    ],
+                    use: {
+                        loader: 'babel-loader',
+                        options: {
+                            presets: ['@babel/preset-env']
+                        }
+                    }
+                }
+            ]
         }
-      },
-      '/apis': {
-        target: 'http://apis.juhe.cn',
-        pathRewrite: {
-          '^/apis': ''
-        }
-      },
-      '/netbian': {
-        target: 'http://pic.netbian.com',
-        pathRewrite: {
-          '^/netbian': ''
-        }
-      }
     }
-    //   //环境配置
-    //   host: '192.168.1.53',
-    //   port: 8080,
-    //   https: false,
-    //   hotOnly: false,
-    //   open: true, //配置自动启动浏览器
-    //   proxy: {
-    //     // 配置多个代理(配置一个 proxy: 'http://localhost:4000' )
-    //     // '/api': {
-    //     //   target: 'http://192.168.1.248:9888',
-    //     //   // target: 'http://192.168.1.4:8999',
-    //     //   pathRewrite: {
-    //     //     '^/api': '/api'
-    //     //   }
-    //     // }
-    //   }
-
-  },
-
-  pluginOptions: {
-    'style-resources-loader': {
-      preProcessor: 'less',
-      patterns: [
-        // 下面这段是自己加的，根据自己文件的位置来修改
-        path.resolve(__dirname, 'src/assets/var.less')
-      ]
-    }
-  },
-  // https://www.cnblogs.com/hanguidong/p/9416194.html
-  configureWebpack: config => {
-    config.resolve = {
-      extensions: ['.js', '.vue', '.json', '.css'],
-      alias: {
-        vue$: 'vue/dist/vue.esm.js',
-        '@': resolve('src')
-      }
-    }
-  }
 }

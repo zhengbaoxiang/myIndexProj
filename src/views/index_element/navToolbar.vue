@@ -22,20 +22,8 @@ export default {
     props: {},
     data() {
         return {
-            showNav: true,
+            showNav: false,
             linkList: [
-                {
-                    title: '新闻板块',
-                    routeName: 'newsInfo'
-                },
-                {
-                    title: '图书板块',
-                    routeName: 'booksInfo'
-                },
-                // {
-                //     title: '学习笔记',
-                //     routeName: 'studyNotes'
-                // },
                 {
                     title: '图片识别',
                     routeName: 'picTotext'
@@ -49,14 +37,8 @@ export default {
     methods: {
         goto(name) {
             console.log(name)
-            // this.$router.push({
-            //   name: name,
-            //   path: name,
-            //   query: { id: 1 },
-            //   params: { index: 2 }
-            // })
             // console.log(window.location)
-            const url = window.location.href + name + ''
+            const url = window.location.origin + '/' + name
             window.open(url, '_blank')
         }
     }

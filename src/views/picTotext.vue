@@ -37,8 +37,8 @@
     </div>
 </template>
 <script>
-import { blobToDataURL } from '@/utils/myUtils'
-import { baiduApi } from '@/assets/api'
+import { blobToDataURL } from '@/libs/util'
+import { baiduApi } from '@/api/api'
 export default {
     data() {
         return {
@@ -125,7 +125,7 @@ export default {
 </script>
 <style lang="less">
 .baiduOCR {
-    height: calc(100% - 20px);
+    height:  ~'calc(100% - 20px)';
     padding: 10px;
 
     .upload,

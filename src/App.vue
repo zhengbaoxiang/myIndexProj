@@ -10,12 +10,9 @@
 
 <style lang="less">
 body {
-    min-height: 510px;
     height: 100%;
-    margin: 0 auto;
 }
 #app {
     height: 100%;
-    font-family: 'Microsoft Yahei';
 }
 </style>

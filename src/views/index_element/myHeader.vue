@@ -4,13 +4,10 @@
             <div class="header_con">
                 <div id="haed_time" v-html="timeStr"></div>
             </div>
-            <p class="mesg">要加油呀！(*^_^*)</p>
         </header>
     </div>
 </template>
 <script>
-// import pageCard from './pageCard'
-// import myfooter from './footer'
 export default {
     name: 'myHeader',
     components: {},
@@ -23,15 +20,14 @@ export default {
         }
     },
     created() {
-        this.initialData('2022-01-01')
+        let date = window.localStorage.getItem('headDate') || '2022-05-01'
+        this.initialData(date)
     },
     mounted() {
         // 监听change事件，同时附带回调函数处理传值
-        this.eventHub.$on('headDateChange', this.handleChange)
+        EVENT_BUS.$on('headDateChange', this.handleChange)
     },
-    activated() {
-        this.initialData('2022-01-01')
-    },
+    activated() {},
     methods: {
         handleChange(value) {
             window.localStorage.setItem('headDate', value)
@@ -45,7 +41,7 @@ export default {
         },
         fnTimeleft(dateStr) {
             dateStr = dateStr || this.dateStr
-            console.log('dateStr:参数：', dateStr)
+            // console.log('dateStr:参数：', dateStr)
 
             // 实际开发需要通过ajax来读取后台的时间
             var sNow = new Date()
@@ -79,10 +75,10 @@ export default {
 </script>
 <style lang="less" scoped>
 .myHeader {
-    padding-top: 5px;
+    padding-top: 10px;
     header {
         width: 100%;
-        height: 50px;
+        height: 30px;
         position: relative;
         .header_con {
             width: 60%;
@@ -92,16 +88,9 @@ export default {
             vertical-align: center;
             /*background-color: gold;*/
             #haed_time {
-                font: 35px/50px 'KaiTi';
+                font: 28px/30px 'KaiTi';
                 color: #ffc107;
             }
-        }
-        .mesg {
-            position: absolute;
-            right: 0;
-            top: 0;
-            font: 30px/50px 'KaiTi';
-            color: #ff8800;
         }
     }
 }

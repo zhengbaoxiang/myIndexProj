@@ -90,7 +90,6 @@ export default {
                 type: 'warning'
             })
                 .then(() => {
-                    this.$message.success({ message: '删除成功!' })
                     this.$emit('delInfo', this.paramsObj)
                 })
                 .catch(() => {})
@@ -109,6 +108,10 @@ export default {
         // 没有后台服务的情况，上传保存图片背景比较困难，暂时搁置，使用本地图片
         Upload() {
             console.log('todo')
+        },
+        getRequireUrl(name) {
+            const url = require('@/assets/images/' + name)
+            return url
         },
         // 打开新窗口
         openNewTag(url) {

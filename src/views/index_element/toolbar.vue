@@ -55,8 +55,8 @@ export default {
         return {
             fileBtnId: String(Math.random()), // 保证每个文件在各自的dom中，不会覆盖
             showSetting: false,
-            curValue: '16',
-            selectDate: '2022-01-01',
+            curValue: '24',
+            selectDate: window.localStorage.getItem('headDate'),
             gridList: [
                 {
                     title: '2x4',
@@ -91,14 +91,14 @@ export default {
         // 选择倒计时日期
         chooseDate(value) {
             // 刷新页面布局
-            this.eventHub.$emit('headDateChange', value)
+            EVENT_BUS.$emit('headDateChange', value)
         },
         chooseGridNum(data) {
             // console.log(data.value)
             this.curValue = data.value
             window.localStorage.setItem('gridNum', data.value)
             // 刷新页面布局
-            this.eventHub.$emit('gridNumChange', data.value)
+            EVENT_BUS.$emit('gridNumChange', data.value)
             // this.showPopup = false
         },
         fileChange(el) {
@@ -111,6 +111,7 @@ export default {
             // this.domPicUrl = require('./' + fileName) //当前路径可以切换
             // this.domPicUrl = require('@/assets/images/backgrounds/' + fileName)
             this.$emit('getBgName', fileName)
+            // 处理blob文件
         },
         cancel() {
             this.showSetting = false
@@ -122,7 +123,7 @@ export default {
                 type: 'warning'
             })
                 .then(() => {
-                    this.$message.success({ message: '重置成功!' })
+                    this.showSetting = false
                     this.resetConfirm()
                 })
                 .catch(() => {})
