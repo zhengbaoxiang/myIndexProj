@@ -52,9 +52,9 @@ const config = {
     ],
 
     // api请求基础路径
-    baseUrl: process.env.VUE_APP_BASE_APIURL || '/',
+    baseUrl: process.env.VUE_APP_BASE_APIURL,
     // 页面服务器的基础路径
-    publicPath: process.env.VUE_APP_PUBLIC_PATH || '/',
+    publicPath: process.env.VUE_APP_PUBLIC_PATH ,
     // 前端服务器的域名
     serviceHost: process.env.VUE_APP_SERVICE_HOST || '/', 
 }

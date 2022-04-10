@@ -1,7 +1,7 @@
 <template>
     <section class="main_con">
         <div class="list_zone ">
-            <div id="grid" :class="[setLength === 24 ? 'c6' : 'c4']">
+            <div id="grid" :class="[setLength === 15 ? 'r3' : 'r2']">
                 <ol
                     class="pageList"
                     id="pageList"
@@ -56,7 +56,7 @@ export default {
         return {
             tabId: 1,
             dataList: [],
-            setLength: 24,
+            setLength: 15,
             currentData: {},
             showPopup: false
         }
@@ -169,13 +169,12 @@ export default {
 <style lang="less" scoped>
 section.main_con {
     width: 100%;
-    /*height: 100%;*/
     margin: auto;
-    /*background-color: #d6e9c6;*/
     .list_zone {
         position: relative;
-        width: 100%;
-        height: ~'calc(100% - 130px)';
+        margin: 0 auto;
+        width: 60%;
+        // height: ~'calc(100% - 130px)';
         overflow: hidden;
         .tab_con {
             height: 30px;
@@ -201,7 +200,7 @@ section.main_con {
         }
         #grid {
             height: 100%;
-            width: 100%;
+            margin: 0 auto;
             overflow: hidden;
             transition: left 400ms linear 0s;
             ol.pageList.active {
@@ -209,60 +208,20 @@ section.main_con {
             }
             ol.pageList {
                 display: none;
-                list-style: outside none none;
-                margin: 10px auto 10px;
                 overflow: hidden;
-                width: ~'calc(100% - 200px)';
-                max-width: 1700px;
-                height: 100%;
+                font-size: 0;
                 & > li {
-                    float: left;
-                    height: 152px;
-                    min-width: 100px;
-                    width: ~'calc(16.6% - 20px)';
-
-                    transition: height 500ms linear;
-                    margin: 10px;
-                    position: relative;
+                    display: inline-block;
+                    width: 20%;
                     box-sizing: border-box;
-                    opacity: 1;
-                }
-                @media (max-width: 1500px) {
-                    & > li {
-                        height: 120px;
-                    }
-                }
-
-                @media (max-width: 1100px) {
-                    & > li {
-                        height: 90px;
-                    }
-                }
-                @media (max-height: 800px) {
-                    & > li {
-                        height: 120px;
-                    }
-                }
-                @media (max-height: 600px) {
-                    & > li {
-                        height: 90px;
-                    }
                 }
             }
         }
-        #grid.c6 ol.pageList {
-            width: ~'calc(100% - 200px)';
-            li {
-                margin: 10px;
-                width: ~'calc(16.6% - 25px)';
-            }
+        #grid.r3 {
+            margin: 0 auto;
         }
-        #grid.c4 ol.pageList {
-            width: ~'calc(80% - 100px)';
-            li {
-                margin: 10px 15px;
-                width: ~'calc(25% - 50px)';
-            }
+        #grid.r2 {
+            margin: 20px 0;
         }
     }
 

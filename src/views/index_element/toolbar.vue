@@ -55,24 +55,16 @@ export default {
         return {
             fileBtnId: String(Math.random()), // 保证每个文件在各自的dom中，不会覆盖
             showSetting: false,
-            curValue: '24',
+            curValue: '15',
             selectDate: window.localStorage.getItem('headDate'),
             gridList: [
                 {
-                    title: '2x4',
-                    value: '8'
+                    title: '2x5',
+                    value: '10'
                 },
                 {
-                    title: '3x4',
-                    value: '12'
-                },
-                {
-                    title: '4x4',
-                    value: '16'
-                },
-                {
-                    title: '4x6',
-                    value: '24'
+                    title: '3x5',
+                    value: '15'
                 }
             ]
         }

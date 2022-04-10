@@ -43,8 +43,6 @@ module.exports = {
                         resolve('test'),
                         resolve('node_modules/webpack-dev-server/client'),
                         resolve('node_modules/iview/src'),
-                        resolve('node_modules/tree-table-vue/lib'),
-                        resolve('node_modules/v-org-tree/dist')
                     ],
                     use: {
                         loader: 'babel-loader',

@@ -37,11 +37,14 @@ export default {
 <style lang="less" scoped>
 .searchArea {
     width: 100%;
+    margin: 25px auto 25px;
+    text-align: center;
+
     .search_form {
+        display: inline-block;
         width: 500px;
         height: 40px;
         line-height: 40px;
-        margin: 25px auto 30px;
 
         font-size: 0;
         border: 2px solid rgba(0, 144, 252, 1);

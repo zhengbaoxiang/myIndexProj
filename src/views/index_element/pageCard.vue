@@ -12,22 +12,24 @@
             />
             <label @click="clickDel($event)" class="del_btn"></label>
         </div>
-        <div
-            @click="openNewTag(paramsObj.url)"
-            class="content"
-            v-if="paramsObj.dataId"
-        >
-            <!-- <img src="./bgc.jpg" alt="静态路径"/> -->
-            <img :src="domPicUrl" alt="动态路径" />
-            <!-- <img :src="'' + this.paramsObj.picUrl" alt="写在这不管用"/> -->
-            <p class="title">{{ paramsObj.title }}</p>
+        <div class="cardCon">
+            <div class="scaling-helper"></div>
+            <div
+                v-if="paramsObj.dataId"
+                class="content"
+                @click="openNewTag(paramsObj.url)"
+            >
+                <!-- <img src="./bgc.jpg" alt="静态路径"/> -->
+                <img :src="domPicUrl" alt="动态路径" />
+                <!-- <img :src="'' + this.paramsObj.picUrl" alt="拼接写在这不管用"/> -->
+                <p class="title">{{ paramsObj.title }}</p>
+            </div>
+            <div
+                v-if="!paramsObj.dataId"
+                class="empty content"
+                @click="clickEdit($event)"
+            ></div>
         </div>
-
-        <div
-            @click="clickEdit($event)"
-            class="empty content"
-            v-if="!paramsObj.dataId"
-        ></div>
     </div>
 </template>
 <script>
@@ -123,14 +125,18 @@ export default {
 <style lang="less" scoped>
 .pageCard {
     position: relative;
-    width: 100%;
-    height: 100%;
+    margin: 14% auto;
+    width: 72%;
+    max-width: 150px;
+    min-width: 80px;
+
     .head_btn {
         display: none;
         position: absolute;
         z-index: 10;
         width: 100%;
         height: 24px;
+        top: -15px;
         label {
             background-color: transparent;
             background: url('../../assets/images/controls-431.png');
@@ -163,26 +169,48 @@ export default {
             background-position: 147px 25px;
         }
     }
-    .content {
+    .cardCon {
         position: relative;
-        height: 100%;
         width: 100%;
         box-sizing: border-box;
-        overflow: hidden;
-        color: rgb(60, 60, 60);
-        border: 1px solid #d8d8d8;
         transition: all 500ms ease;
+        .scaling-helper {
+            // 子元素设置100%，即位父元素的宽度，
+            // 可以撑开一个正方形
+            // margin-top: 100%;
+            padding-top: 100%;
+        }
+        .content {
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+
+            border-radius: 50%;
+            border: 1px solid #d8d8d8;
+            overflow: hidden;
+        }
+        .content.empty {
+            /*没有标签用虚线*/
+            border-style: dashed;
+            overflow: auto;
+            background: url('../../assets/images/plus.png') scroll center center
+                    no-repeat,
+                url('../../assets/images/noise.png') repeat;
+        }
+
         img {
             display: block;
             height: 100%;
-            width: 100%;
+            // width: 100%;
             transition: all 600ms ease;
         }
         p.title {
             display: block;
             /*background: rgb(250,250,250) none repeat scroll;*/
             position: absolute;
-            bottom: 0;
+            bottom: 20px;
             height: 25px;
             width: 100%;
             overflow: hidden;
@@ -193,14 +221,6 @@ export default {
             white-space: nowrap;
             transition: all 400ms ease;
         }
-    }
-    .content.empty {
-        /*没有标签用虚线*/
-        border-style: dashed;
-        overflow: auto;
-        background: url('../../assets/images/plus.png') scroll center center
-                no-repeat,
-            url('../../assets/images/noise.png') repeat;
     }
 }
 .pageCard:hover {
@@ -218,7 +238,7 @@ export default {
         }
         .title {
             background-color: rgba(0, 0, 0, 0.5);
-            transform: scale(1.5, 1.5);
+            transform: scale(1.3, 1.3);
             color: #ff8800;
             z-index: 2;
         }

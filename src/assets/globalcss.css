@@ -29,6 +29,15 @@ h1,h2,h3,h4,h5{
     font-weight:normal;
 }
 
+.bdyel{
+    border: 1px solid yellow;
+}
+.bdgreen{
+    border: 1px solid green;
+}
+.bdred{
+    border: 1px solid red;
+}
 a,a:visited{
     color: inherit;
     text-decoration: none;

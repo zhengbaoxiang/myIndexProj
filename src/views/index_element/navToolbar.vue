@@ -25,6 +25,10 @@ export default {
             showNav: false,
             linkList: [
                 {
+                    title: 'web系统',
+                    routeName: 'management'
+                },
+                {
                     title: '图片识别',
                     routeName: 'picTotext'
                 }
@@ -37,7 +41,7 @@ export default {
     methods: {
         goto(name) {
             console.log(name)
-            // console.log(window.location)
+            console.log(window.location)
             const url = window.location.origin + '/' + name
             window.open(url, '_blank')
         }

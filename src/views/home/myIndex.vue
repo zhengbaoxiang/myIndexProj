@@ -2,9 +2,9 @@
 <div class="myIndex" :style="styleObj">
   <myheader></myheader>
   <searchArea></searchArea>
+  <pageContain></pageContain>
   <navtoolbar></navtoolbar>
   <toolbar></toolbar>
-  <pageContain></pageContain>
   <myfooter></myfooter>
 </div>
 </template>
@@ -55,6 +55,7 @@ export default {
   background-size: cover;
   background-attachment:fixed;
   font-size:16px;
+  overflow: hidden;
 
 }
 
