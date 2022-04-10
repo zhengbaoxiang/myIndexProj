@@ -94,11 +94,12 @@ export default {
 
             // 从localStorage中读取
             const myUrlListStr = window.localStorage.getItem(name)
+            
             // 读取初始值
             const initialDataList = window.myConfig.initialDataList
             const initialDataListLength = initialDataList.length
 
-            let tempList = []
+            let tempList = [],myUrlList=[]
             // 如果本地没有存储过，则使用初始数据
             if (!myUrlListStr) {
                 for (
@@ -110,11 +111,11 @@ export default {
                         id: initialDataListLength + i
                     })
                 }
-                this.dataList = initialDataList.concat(tempList)
+                myUrlList = initialDataList.concat(tempList)
             } else {
-                let myUrlList = JSON.parse(myUrlListStr)
-                this.dataList = myUrlList.slice(0, this.setLength)
+                myUrlList = JSON.parse(myUrlListStr)
             }
+            this.dataList = myUrlList.slice(0, this.setLength)
             console.log('->', this.dataList, '<')
         },
 
@@ -218,10 +219,10 @@ section.main_con {
             }
         }
         #grid.r3 {
-            margin: 0 auto;
+            margin: 0 auto 0;
         }
         #grid.r2 {
-            margin: 20px 0;
+            margin: 50px 0 0;
         }
     }
 
