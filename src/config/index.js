@@ -43,20 +43,76 @@ const config = {
             title: '百度智能云'
         },
         {
-            id: 5,
-            dataId: 6,
-            url: 'https://tjupt.org/torrents.php',
+            id: 6,
+            dataId: 7,
+            url: 'https://console.bce.baidu.com/ai/#/ai/ocr/overview/index',
             picName: 'bg (7).jpg',
+            title: '百度智能云'
+        },
+        {
+            id: 7,
+            dataId: 8,
+            url: 'https://console.bce.baidu.com/ai/#/ai/ocr/overview/index',
+            picName: 'bg (8).jpg',
+            title: '百度智能云'
+        },
+        {
+            id: 8,
+            dataId: 9,
+            url: 'https://console.bce.baidu.com/ai/#/ai/ocr/overview/index',
+            picName: 'bg (9).jpg',
+            title: '百度智能云'
+        },
+        {
+            id: 9,
+            dataId: 10,
+            url: 'https://console.bce.baidu.com/ai/#/ai/ocr/overview/index',
+            picName: 'bg (10).jpg',
+            title: '百度智能云'
+        },
+        {
+            id: 10,
+            dataId: 11,
+            url: 'https://tjupt.org/torrents.php',
+            picName: 'bg (11).jpg',
             title: '北洋园PT'
-        }
+        },
+        {
+            id: 10,
+            dataId: 12,
+            url: 'https://tjupt.org/torrents.php',
+            picName: 'bg (12).jpg',
+            title: '北洋园PT'
+        },
+        {
+            id: 10,
+            dataId: 13,
+            url: 'https://tjupt.org/torrents.php',
+            picName: 'bg (13).jpg',
+            title: '北洋园PT'
+        },
+        {
+            id: 10,
+            dataId: 14,
+            url: 'https://tjupt.org/torrents.php',
+            picName: 'bg (14).jpg',
+            title: '北洋园PT'
+        },
+        {
+            id: 10,
+            dataId: 15,
+            url: 'https://tjupt.org/torrents.php',
+            picName: 'bg (15).jpg',
+            title: '北洋园PT'
+        },
     ],
 
     // api请求基础路径
     baseUrl: process.env.VUE_APP_BASE_APIURL,
     // 页面服务器的基础路径
-    publicPath: process.env.VUE_APP_PUBLIC_PATH ,
+    publicPath: process.env.VUE_APP_PUBLIC_PATH,
     // 前端服务器的域名
-    serviceHost: process.env.VUE_APP_SERVICE_HOST || '/', 
+    serviceHost: process.env.VUE_APP_SERVICE_HOST || '/'
 }
 
 export default config

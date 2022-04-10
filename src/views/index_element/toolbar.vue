@@ -100,10 +100,8 @@ export default {
             // el.target.value = ''
             // 修改背景 文件名传出去
             console.log(el, fileName)
-            // this.domPicUrl = require('./' + fileName) //当前路径可以切换
-            // this.domPicUrl = require('@/assets/images/backgrounds/' + fileName)
-            this.$emit('getBgName', fileName)
             // 处理blob文件
+            this.$emit('getBgName', fileName)
         },
         cancel() {
             this.showSetting = false

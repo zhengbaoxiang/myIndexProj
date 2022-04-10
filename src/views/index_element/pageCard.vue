@@ -77,8 +77,8 @@ export default {
             if (this.paramsObj.picName) {
                 this.domPicUrl = require('@/assets/images/backgrounds/' +
                     this.paramsObj.picName)
-            } else {
-                this.domPicUrl = require('@/assets/images/background.jpeg')
+            } else if(this.paramsObj.dataId) {
+                this.domPicUrl = require(`@/assets/images/backgrounds/bg (${this.paramsObj.dataId}).jpg`            )
             }
         },
         // 把id传出去
