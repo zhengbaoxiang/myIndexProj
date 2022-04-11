@@ -160,7 +160,7 @@ export default {
                 dataId: data.id + 1,
                 url: data.url,
                 picName: name || data.picName,
-                title: data.title
+                title: data.title.slice(0,5)
             }
             return tempObj
         }
@@ -245,6 +245,7 @@ section.main_con {
             padding: 10px;
             background: white url('../../assets/images/noise.png') repeat;
             border-color: rgb(154, 159, 164);
+            border-radius: 10px;
             box-shadow: rgba(0, 0, 0, 0.85) 0 0 6px 0;
             z-index: 1000;
             input {

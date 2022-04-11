@@ -26,11 +26,11 @@ export default {
             linkList: [
                 {
                     title: 'web系统',
-                    routeName: 'management'
+                    routeName: '/management'
                 },
                 {
                     title: '图片识别',
-                    routeName: 'picTotext'
+                    routeName: '/myindex/picTotext'
                 }
             ]
         }
@@ -42,7 +42,7 @@ export default {
         goto(name) {
             console.log(name)
             console.log(window.location)
-            const url = window.location.origin + '/' + name
+            const url = window.location.origin + name
             window.open(url, '_blank')
         }
     }

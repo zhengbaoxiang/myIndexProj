@@ -38,14 +38,21 @@ export default {
         }
     },
     created() {},
-    mounted() {},
+    mounted() {
+        setTimeout(() => {
+            this.initial()
+        }, 3000)
+    },
     activated() {},
     methods: {
         initial() {
             //  js动态控制背景地址
-            //   const url = require('@/assets/images/' + this.bgName)
-            //   console.log('->', url,'<');
-            //   this.styleObj = { color: '#3E4255', 'background-image': `url(${url})` }
+            const url = require('@/assets/images/' + this.bgName)
+            console.log('->', url, '<')
+            this.styleObj = {
+                color: '#3E4255',
+                'background-image': `url(${url})`
+            }
         }
     }
 }
@@ -55,7 +62,7 @@ export default {
     width: 100%;
     height: 100%;
     //   background: url("@/assets/images/background.jpeg")  no-repeat; //失败 Can't resolve './@/assets/images/background.jpeg'
-    background: url('../../assets/images/bg2.gif') no-repeat; //成功
+    background: url('../../assets/images/bg2.png') no-repeat; //成功
     background-size: cover;
     background-attachment: fixed;
     font-size: 16px;

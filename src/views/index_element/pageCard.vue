@@ -2,14 +2,6 @@
     <div class="pageCard">
         <div class="head_btn" v-if="paramsObj.dataId">
             <label @click="clickEdit($event)" class="edit_btn"></label>
-            <label :for="fileBtnId" class="bgc_btn"></label>
-            <input
-                type="file"
-                style="display:none"
-                :id="fileBtnId"
-                accept="image/*"
-                @change="fileChange($event)"
-            />
             <label @click="clickDel($event)" class="del_btn"></label>
         </div>
         <div class="cardCon">
@@ -96,21 +88,6 @@ export default {
                 })
                 .catch(() => {})
         },
-        fileChange(el) {
-            if (!el.target.files[0].size) return
-            const files = el.target.files
-            const fileName = files[0].name
-            // el.target.value = ''
-            // 修改背景 文件名传出去
-            console.log(el, fileName)
-            // this.domPicUrl = require('./' + fileName) //当前路径可以切换
-            // this.domPicUrl = require('@/assets/images/backgrounds/' + fileName)
-            this.$emit('getPicName', this.paramsObj, fileName)
-        },
-        // 没有后台服务的情况，上传保存图片背景比较困难，暂时搁置，使用本地图片
-        Upload() {
-            console.log('todo')
-        },
         getRequireUrl(name) {
             const url = require('@/assets/images/' + name)
             return url
@@ -125,7 +102,7 @@ export default {
 <style lang="less" scoped>
 .pageCard {
     position: relative;
-    margin: 14% auto;
+    margin: 10% auto;
     width: 72%;
     max-width: 150px;
     min-width: 80px;
@@ -136,7 +113,7 @@ export default {
         z-index: 10;
         width: 100%;
         height: 24px;
-        top: -15px;
+        top: -10px;
         label {
             background-color: transparent;
             background: url('../../assets/images/controls-431.png');
@@ -238,7 +215,7 @@ export default {
         }
         .title {
             background-color: rgba(0, 0, 0, 0.5);
-            transform: scale(1.3, 1.3);
+            transform: scale(1.1, 1.3);
             color: #ff8800;
             z-index: 2;
         }

@@ -37,7 +37,7 @@ export default {
 <style lang="less" scoped>
 .searchArea {
     width: 100%;
-    margin: 40px auto 10px;
+    margin: 40px auto 30px;
     text-align: center;
 
     .search_form {
