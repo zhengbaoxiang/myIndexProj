@@ -37,12 +37,13 @@ export default {
 <style lang="less" scoped>
 .searchArea {
     width: 100%;
-    margin: 40px auto 30px;
-    text-align: center;
+    margin: 7% auto 0px;
+    width: 30%;
+    min-width: 400px;
 
     .search_form {
         display: inline-block;
-        width: 500px;
+        width: 100%;
         height: 40px;
         line-height: 40px;
 
@@ -64,9 +65,9 @@ export default {
             display: inline-block;
             vertical-align: bottom;
             height: 38px;
-            width: 400px;
+            width: ~"calc(100% - 65px)";
             margin: 1px 0 0 5px;
-            padding: 0px 5px;
+            padding: 0px 0px;
             font: normal 16px/37px 'KaiTi';
             color: rgba(51, 51, 51, 1);
             /*/* 去掉获得焦点(点击)时显示的蓝色的框   */

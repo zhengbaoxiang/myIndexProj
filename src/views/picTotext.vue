@@ -61,7 +61,11 @@ export default {
                 client_secret: 'agpeLIebtveKRxt07eln4Mht62f9GzyQ'
             }
             baiduApi.getToken(params).then((res) => {
-                this.token = res.access_token
+                this.token = res.data.access_token
+                console.log('->', res,'<');
+                
+                console.log('->', this.token,'<');
+                
             })
         },
 
@@ -98,7 +102,7 @@ export default {
 
             baiduApi[apiName](imageUrl, token).then((res) => {
                 // console.log('res', res)
-                let temp = res.words_result || []
+                let temp = res.data.words_result || []
                 let list = temp.map((item) => {
                     return item.words
                 })

@@ -169,12 +169,15 @@ export default {
 </script>
 <style lang="less" scoped>
 section.main_con {
+    position: fixed;
+    top: 31%;
     width: 100%;
     margin: auto;
     .list_zone {
         position: relative;
         margin: 0 auto;
-        width: 60%;
+        width: 50%;
+        min-width: 700px;
         // height: ~'calc(100% - 130px)';
         overflow: hidden;
         .tab_con {
@@ -214,6 +217,7 @@ section.main_con {
                 & > li {
                     display: inline-block;
                     width: 20%;
+                    min-width: 120px;
                     box-sizing: border-box;
                 }
             }

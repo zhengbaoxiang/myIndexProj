@@ -2,7 +2,7 @@
     <div class="pageCard">
         <div class="head_btn" v-if="paramsObj.dataId">
             <label @click="clickEdit($event)" class="edit_btn"></label>
-            <label @click="clickDel($event)" class="del_btn"></label>
+            <label @click="clickDel($event)" class="del_btn" title="删除"></label>
         </div>
         <div class="cardCon">
             <div class="scaling-helper"></div>

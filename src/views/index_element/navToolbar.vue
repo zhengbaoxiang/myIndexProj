@@ -30,7 +30,7 @@ export default {
                 },
                 {
                     title: '图片识别',
-                    routeName: '/myindex/picTotext'
+                    routeName: window.myConfig.publicPath + 'picTotext'
                 }
             ]
         }
@@ -51,7 +51,7 @@ export default {
 <style lang="less" scoped>
 .navtoolbar {
     position: absolute;
-    top: 80px;
+    top: 20px;
     right: 20px;
     span {
         background-color: #ff8800;
