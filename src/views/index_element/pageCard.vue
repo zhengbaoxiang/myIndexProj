@@ -88,10 +88,10 @@ export default {
                 })
                 .catch(() => {})
         },
-        getRequireUrl(name) {
-            const url = require('@/assets/images/' + name)
-            return url
-        },
+        // getRequireUrl(name) {
+        //     const url = require('@/assets/images/' + name)
+        //     return url
+        // },
         // 打开新窗口
         openNewTag(url) {
             window.open(url, '_blank')
@@ -104,9 +104,6 @@ export default {
     position: relative;
     margin: 10% auto;
     width: 72%;
-    max-width: 150px;
-    min-width: 80px;
-
     .head_btn {
         display: none;
         position: absolute;

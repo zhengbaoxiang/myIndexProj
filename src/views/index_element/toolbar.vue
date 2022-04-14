@@ -95,13 +95,10 @@ export default {
         },
         fileChange(el) {
             if (!el.target.files[0].size) return
-            const files = el.target.files
-            const fileName = files[0].name
-            // el.target.value = ''
+            const file = el.target.files[0]
             // 修改背景 文件名传出去
-            console.log(el, fileName)
             // 处理blob文件
-            this.$emit('getBgName', fileName)
+            this.$emit('getBgName', file)
         },
         cancel() {
             this.showSetting = false

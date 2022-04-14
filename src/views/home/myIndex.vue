@@ -4,7 +4,7 @@
         <searchArea></searchArea>
         <pageContain></pageContain>
         <navtoolbar></navtoolbar>
-        <toolbar></toolbar>
+        <toolbar @getBgName="getBgName"></toolbar>
         <myfooter></myfooter>
         <div class="bubbleCon">
             <div class="bubble"></div>
@@ -19,6 +19,8 @@ import toolbar from '@/views/index_element/toolbar'
 import searchArea from '@/views/index_element/searchArea'
 import pageContain from '@/views/index_element/pageContain'
 import myfooter from '@/views/index_element/myfooter'
+
+import { blobToDataURL } from '@/libs/util'
 export default {
     name: 'myIndex',
     components: {
@@ -47,13 +49,28 @@ export default {
     activated() {},
     methods: {
         initial() {
-            const url = require('@/assets/images/' + this.bgName)
-            console.log('->', url, '<')
-            //  js动态控制背景地址
-            this.styleObj = {
-                color: '#3E4255',
-                'background-image': `url(${url})`
+            // const url = require('@/assets/images/' + this.bgName)
+            let url = window.localStorage.getItem('bgUrl') || ''
+            if (url) {
+                // console.log('->', url, '<')
+                //  js动态控制背景地址
+                this.styleObj = {
+                    color: '#3E4255',
+                    'background-image': `url(${url})`
+                }
             }
+        },
+        getBgName(file) {
+            // console.log('-file>', file, '<')
+            blobToDataURL(file, (res) => {
+                // console.log('-url>', res, '<')
+                const base64Url = res
+                this.styleObj = {
+                    color: '#3E4255',
+                    'background-image': `url(${base64Url})`
+                }
+                window.localStorage.setItem('bgUrl', base64Url)
+            })
         }
     }
 }
@@ -62,9 +79,11 @@ export default {
 .myIndex {
     width: 100%;
     height: 100%;
+    background: rgba(53,54,58,1);
     //   background: url("@/assets/images/background.jpeg")  no-repeat; //失败 Can't resolve './@/assets/images/background.jpeg'
     // background: url('../../assets/images/bg2.png') no-repeat; //成功
     background-size: cover;
+    // background-size: 100% 100%;
     background-attachment: fixed;
     font-size: 16px;
     overflow: hidden;

@@ -37,9 +37,9 @@ export default {
 <style lang="less" scoped>
 .searchArea {
     width: 100%;
-    margin: 7% auto 0px;
+    margin: 5% auto 0px;
     width: 30%;
-    min-width: 400px;
+    min-width: 330px;
 
     .search_form {
         display: inline-block;
