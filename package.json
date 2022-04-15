@@ -18,13 +18,14 @@
         "vuex": "^3.0.1"
     },
     "devDependencies": {
-        "@vue/cli-service": "^3.0.1",
         "@babel/polyfill": "^7.2.5",
         "@vue/babel-preset-app": "^3.3.0",
         "@vue/cli-plugin-babel": "^3.0.1",
+        "@vue/cli-service": "^3.0.1",
         "less": "^2.7.3",
         "less-loader": "^4.0.5",
-        "vue-template-compiler": "^2.5.13"
+        "vue-template-compiler": "^2.5.13",
+        "webpack-bundle-analyzer": "^4.5.0"
     },
     "browserslist": [
         "> 1%",

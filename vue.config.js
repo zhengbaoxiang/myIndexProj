@@ -5,6 +5,7 @@ function resolve(dir) {
 }
 
 const publicPath = process.env.VUE_APP_PUBLIC_PATH
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 
 module.exports = {
     publicPath: publicPath,
@@ -52,6 +53,10 @@ module.exports = {
                     }
                 }
             ]
-        }
+        },
+        plugins :[
+            new BundleAnalyzerPlugin() // 分析打包大小使用默认配置         
+
+        ]
     }
 }
