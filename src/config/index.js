@@ -1,4 +1,5 @@
 const config = {
+    initialTime: '2022-05-01',
     initialDataList: [
         {
             id: 0,
@@ -17,23 +18,23 @@ const config = {
         {
             id: 2,
             dataId: 3,
-            url: 'https://element.eleme.cn/#/zh-CN/component/form',
+            url: 'https://tjupt.org/torrents.php',
             picName: 'bg (3).jpg',
-            title: 'Element UI'
+            title: '北洋园PT'
         },
         {
             id: 3,
             dataId: 4,
-            url: 'https://github.com/zhenggenshuo?tab=repositories',
+            url: 'https://tjupt.org/torrents.php',
             picName: 'bg (4).jpg',
-            title: 'github'
+            title: '北洋园PT'
         },
         {
             id: 4,
             dataId: 5,
-            url: 'https://cn.vuejs.org/v2/guide/installation.html',
+            url: 'https://tjupt.org/torrents.php',
             picName: 'bg (5).jpg',
-            title: 'VUE官网'
+            title: '北洋园PT'
         },
         {
             id: 5,

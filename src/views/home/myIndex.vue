@@ -31,11 +31,6 @@ export default {
         pageContain,
         myfooter
     },
-    props: {
-        tab_index: {
-            default: 0
-        }
-    },
     data() {
         return {
             bgName: 'bg2.gif',

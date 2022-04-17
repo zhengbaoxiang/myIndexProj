@@ -20,7 +20,7 @@ export default {
         }
     },
     created() {
-        let date = window.localStorage.getItem('headDate') || '2022-05-01'
+        let date = window.localStorage.getItem('headDate') || myConfig.initialTime
         this.initialData(date)
     },
     mounted() {
@@ -42,7 +42,6 @@ export default {
         fnTimeleft(dateStr) {
             dateStr = dateStr || this.dateStr
             // console.log('dateStr:参数：', dateStr)
-
             // 实际开发需要通过ajax来读取后台的时间
             var sNow = new Date()
             // 未来时间：12月31日晚24点

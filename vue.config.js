@@ -55,7 +55,7 @@ module.exports = {
             ]
         },
         plugins :[
-            new BundleAnalyzerPlugin() // 分析打包大小使用默认配置         
+            // new BundleAnalyzerPlugin() // 分析打包大小使用默认配置         
 
         ]
     }

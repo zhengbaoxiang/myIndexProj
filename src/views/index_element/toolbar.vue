@@ -23,6 +23,15 @@
                     placeholder="选择日期"
                 >
                 </el-date-picker>
+                <!-- <div class="originDate">
+                    <input
+                        type="date"
+                        name="mdate"
+                        id="sdate"
+                        v-model="selectDate"
+                        @change="originChange(selectDate)"
+                    />
+                </div> -->
                 <p class="title">请选择布局方案：</p>
                 <li v-for="(item, index) in gridList" :key="index">
                     <input
@@ -83,6 +92,10 @@ export default {
         // 选择倒计时日期
         chooseDate(value) {
             // 刷新页面布局
+            this.selectDate = value
+            EVENT_BUS.$emit('headDateChange', value)
+        },
+        originChange(value){
             EVENT_BUS.$emit('headDateChange', value)
         },
         chooseGridNum(data) {
@@ -110,12 +123,12 @@ export default {
                 type: 'warning'
             })
                 .then(() => {
-                    this.showSetting = false
                     this.resetConfirm()
                 })
                 .catch(() => {})
         },
         resetConfirm() {
+            this.showSetting = false
             // 重置按钮,清掉所有存储数据
             window.localStorage.clear()
             window.location.reload() // 刷新页面，不重复提交页面。
@@ -187,6 +200,13 @@ export default {
     .el-date-editor {
         margin-left: 30px;
         width: 200px;
+    }
+    .originDate {
+        margin-left: 30px;
+        width: 200px;
+        input{
+            height: 30px;
+        }
     }
 }
 
