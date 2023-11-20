@@ -76,7 +76,7 @@ export default {
     height: 100%;
     background: rgba(53,54,58,1);
     //   background: url("@/assets/images/background.jpeg")  no-repeat; //失败 Can't resolve './@/assets/images/background.jpeg'
-    // background: url('../../assets/images/bg2.png') no-repeat; //成功
+    background: url('../../assets/images/bg2.gif') no-repeat; //成功
     background-size: cover;
     // background-size: 100% 100%;
     background-attachment: fixed;

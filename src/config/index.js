@@ -1,5 +1,5 @@
 const config = {
-    initialTime: '2022-05-01',
+    initialTime: '2024-01-01',
     initialDataList: [
         {
             id: 0,
@@ -32,9 +32,9 @@ const config = {
         {
             id: 4,
             dataId: 5,
-            url: 'https://tjupt.org/torrents.php',
+            url: 'https://www.taobao.com/',
             picName: 'bg (5).jpg',
-            title: '北洋园PT'
+            title: '淘宝'
         },
         {
             id: 5,

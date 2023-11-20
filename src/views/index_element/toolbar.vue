@@ -159,7 +159,6 @@ export default {
     border: 0px none;
     height: 40px;
     width: 40px;
-    -moz-appearance: none;
     background-size: contain;
     background-repeat: no-repeat;
     opacity: 0.5;

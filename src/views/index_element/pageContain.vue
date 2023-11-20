@@ -176,7 +176,7 @@ section.main_con {
     .list_zone {
         position: relative;
         margin: 0 auto;
-        width: 60%;
+        width: 55%;
         min-width: 300px;
         // height: ~'calc(100% - 130px)';
         overflow: hidden;
